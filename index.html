@@ -232,6 +232,24 @@ nav.main a.active{color:var(--ink); font-weight:800}
 
 /* ---------- missions timeline ---------- */
 .mission-quote{border-left:4px solid var(--gold); padding-left:24px; margin:0 0 38px; font-family:var(--font-display); font-size:1.5rem; font-style:italic; line-height:1.4}
+.spotlight{
+  position:relative; isolation:isolate; overflow:hidden; border-radius:24px; padding:40px;
+  min-height:260px; display:flex; flex-direction:column; justify-content:flex-end; gap:16px; margin-bottom:28px;
+}
+.spotlight .mesh{opacity:.9; background-size:220% 220%}
+.spotlight::after{content:""; position:absolute; inset:0; z-index:1; background:linear-gradient(190deg, rgba(8,10,16,.1), rgba(8,10,16,.82) 85%)}
+.spotlight > *{position:relative; z-index:2}
+.spotlight-badges{display:flex; gap:9px; flex-wrap:wrap}
+.spotlight-badge{background:rgba(255,255,255,.15); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.3); color:#fff; border-radius:999px; padding:8px 16px; font-size:.84rem; font-weight:700; display:inline-flex; align-items:center; gap:6px}
+.spotlight h3{font-size:clamp(1.6rem,3vw,2.1rem); margin:0; color:#fff; font-family:var(--font-display)}
+.spotlight p{color:rgba(255,255,255,.88); margin:0; max-width:56ch; font-size:1.05rem}
+
+.daytime-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px}
+.daytime-list li{display:flex; align-items:center; gap:18px; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:16px 20px}
+.dt-pill{flex:none; background:var(--paper); border:1px solid var(--line); border-radius:999px; padding:8px 16px; font-family:var(--font-display); font-weight:700; color:var(--wine); font-size:.95rem; white-space:nowrap}
+.daytime-list b{display:block; font-size:1.05rem}
+.daytime-list span{font-size:.92rem; color:var(--muted)}
+
 .cal-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px}
 .cal-card{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:22px}
 .cal-card .cal-date{font-family:var(--font-display); color:var(--wine); font-weight:700; font-size:1.1rem; margin-bottom:8px}
@@ -779,10 +797,21 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
         <h2 data-i18n="cal.title">Reaching Silicon Valley — and the world</h2>
       </div>
       <p class="mission-quote reveal" data-i18n="cal.quote"></p>
+
+      <div class="spotlight reveal glow-target" id="cal-e3">
+        <div class="mesh" aria-hidden="true"></div>
+        <div class="spotlight-badges">
+          <span class="spotlight-badge">📅&nbsp;<span data-i18n="cal.e3.date" id="cal-e3-date">Sep 25–27</span></span>
+          <span class="spotlight-badge" data-i18n="cal.e3.loc">📍 CCIC San Jose</span>
+          <span class="spotlight-badge" data-i18n="cal.e3.tag">✦ Annual Conference</span>
+        </div>
+        <h3 id="cal-e3-p" data-i18n="cal.e3.p">Mission Conference: Reaching the World</h3>
+        <p data-i18n="cal.e3.sub">Three days of speakers, workshops, and prayer focused on local and global missions — open to the whole church family.</p>
+      </div>
+
       <div class="cal-grid reveal">
         <div class="cal-card"><div class="cal-date" data-i18n="cal.e1.date">Monthly, Sat</div><p data-i18n="cal.e1.p">Cupertino Village evangelism — the "123, Let's Go!" movement</p></div>
         <div class="cal-card"><div class="cal-date" data-i18n="cal.e2.date">Aug 9</div><p data-i18n="cal.e2.p">CCIC Neighborhood Block Party</p></div>
-        <div class="cal-card glow-target" id="cal-e3"><div class="cal-date" data-i18n="cal.e3.date" id="cal-e3-date">Sep 25–27</div><p data-i18n="cal.e3.p" id="cal-e3-p">Mission Conference: Reaching the World</p></div>
         <div class="cal-card"><div class="cal-date" data-i18n="cal.e4.date">Dec 5</div><p data-i18n="cal.e4.p">HelpOneChild Giving Tree</p></div>
       </div>
     </div>
@@ -822,6 +851,17 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
         <p class="eyebrow" data-i18n="visit.eyebrow">Plan Your Visit</p>
         <h2 data-i18n="visit.title">We'd love to meet you this Sunday</h2>
       </div>
+
+      <div class="reveal" style="margin-bottom:48px">
+        <h3 class="disp" style="font-size:1.3rem; margin:0 0 18px" data-i18n="visit.sched.title">Sunday at CCIC</h3>
+        <ul class="daytime-list">
+          <li><span class="dt-pill" data-i18n="visit.sched.t1">9:00 AM</span><div><b data-i18n="visit.sched.h1">Doors &amp; parking open</b><span data-i18n="visit.sched.p1">Ushers and the welcome desk are ready for first-time guests.</span></div></li>
+          <li><span class="dt-pill" data-i18n="visit.sched.t2">9:30 AM</span><div><b data-i18n="visit.sched.h2">Mandarin Worship &amp; Sunday School begins</b><span data-i18n="visit.sched.p2">Cantonese and Children's Sunday School also begin now.</span></div></li>
+          <li><span class="dt-pill" data-i18n="visit.sched.t3">11:00 AM</span><div><b data-i18n="visit.sched.h3">English, Cantonese &amp; Youth Worship begins</b><span data-i18n="visit.sched.p3">Mandarin Sunday School also begins now.</span></div></li>
+          <li><span class="dt-pill" data-i18n="visit.sched.t4">12:15 PM</span><div><b data-i18n="visit.sched.h4">Fellowship &amp; lunch</b><span data-i18n="visit.sched.p4">Stay and meet your new church family.</span></div></li>
+        </ul>
+      </div>
+
       <div class="visit-grid">
         <ul class="info-list reveal">
           <li>
@@ -1084,6 +1124,25 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
     "cal.e3.p": {en:"Mission Conference: Reaching the World", "zh-hant":"宣教年會：傳揚福音到地極", "zh-hans":"宣教年会：传扬福音到地极"},
     "cal.e4.date": {en:"Dec 5", "zh-hant":"12月5日", "zh-hans":"12月5日"},
     "cal.e4.p": {en:"HelpOneChild Giving Tree", "zh-hant":"HelpOneChild 愛心聖誕樹", "zh-hans":"HelpOneChild 爱心圣诞树"},
+    "cal.e3.loc": {en:"📍 CCIC San Jose", "zh-hant":"📍 聖荷西基督徒會堂", "zh-hans":"📍 圣荷西基督徒会堂"},
+    "cal.e3.tag": {en:"✦ Annual Conference", "zh-hant":"✦ 年度盛會", "zh-hans":"✦ 年度盛会"},
+    "cal.e3.sub": {en:"Three days of speakers, workshops, and prayer focused on local and global missions — open to the whole church family.",
+      "zh-hant":"為期三天的講員信息、工作坊與禱告，聚焦本地與全球宣教——歡迎全教會弟兄姊妹參加。",
+      "zh-hans":"为期三天的讲员信息、工作坊与祷告，聚焦本地与全球宣教——欢迎全教会弟兄姊妹参加。"},
+
+    "visit.sched.title": {en:"Sunday at CCIC", "zh-hant":"CCIC的主日", "zh-hans":"CCIC的主日"},
+    "visit.sched.t1": {en:"9:00 AM", "zh-hant":"上午9:00", "zh-hans":"上午9:00"},
+    "visit.sched.h1": {en:"Doors & parking open", "zh-hant":"開放入場與停車", "zh-hans":"开放入场与停车"},
+    "visit.sched.p1": {en:"Ushers and the welcome desk are ready for first-time guests.", "zh-hant":"招待員與接待處已準備好迎接首次來訪的朋友。", "zh-hans":"招待员与接待处已准备好迎接首次来访的朋友。"},
+    "visit.sched.t2": {en:"9:30 AM", "zh-hant":"上午9:30", "zh-hans":"上午9:30"},
+    "visit.sched.h2": {en:"Mandarin Worship & Sunday School begins", "zh-hant":"國語崇拜與主日學開始", "zh-hans":"国语崇拜与主日学开始"},
+    "visit.sched.p2": {en:"Cantonese and Children's Sunday School also begin now.", "zh-hant":"粵語與兒童主日學亦同時開始。", "zh-hans":"粤语与儿童主日学亦同时开始。"},
+    "visit.sched.t3": {en:"11:00 AM", "zh-hant":"上午11:00", "zh-hans":"上午11:00"},
+    "visit.sched.h3": {en:"English, Cantonese & Youth Worship begins", "zh-hant":"英語、粵語與青年崇拜開始", "zh-hans":"英语、粤语与青年崇拜开始"},
+    "visit.sched.p3": {en:"Mandarin Sunday School also begins now.", "zh-hant":"國語主日學亦同時開始。", "zh-hans":"国语主日学亦同时开始。"},
+    "visit.sched.t4": {en:"12:15 PM", "zh-hant":"中午12:15", "zh-hans":"中午12:15"},
+    "visit.sched.h4": {en:"Fellowship & lunch", "zh-hant":"團契與愛筵", "zh-hans":"团契与爱筵"},
+    "visit.sched.p4": {en:"Stay and meet your new church family.", "zh-hant":"歡迎留步，認識您的教會新家人。", "zh-hans":"欢迎留步，认识您的教会新家人。"},
 
     "give.eyebrow": {en:"Giving", "zh-hant":"奉獻", "zh-hans":"奉献"},
     "give.title": {en:"Why we give", "zh-hant":"為何奉獻", "zh-hans":"为何奉献"},
