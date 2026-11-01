@@ -87,9 +87,17 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .brand-text b{font-family:var(--font-display); font-size:1.3rem; font-weight:700; white-space:nowrap}
 .brand-text span{font-size:.84rem; color:var(--muted); letter-spacing:.03em; white-space:nowrap}
 @media (max-width:980px){.brand-text b{font-size:1.1rem}.brand-text span{display:none}}
-nav.main{display:flex; gap:24px; align-items:center}
-nav.main a{font-size:1.02rem; font-weight:600; text-decoration:none; color:var(--muted); white-space:nowrap}
+nav.main{display:flex; gap:4px; align-items:center; position:relative}
+nav.main a{font-size:1.02rem; font-weight:600; text-decoration:none; color:var(--muted); white-space:nowrap; position:relative; z-index:1; padding:9px 14px; border-radius:999px; transition:color .25s ease}
 nav.main a:hover{color:var(--ink)}
+nav.main a.active{color:var(--ink); font-weight:800}
+.nav-highlight{
+  position:absolute; top:0; height:100%; border-radius:999px; z-index:0; opacity:0;
+  background:linear-gradient(120deg, color-mix(in srgb, var(--gold) 22%, transparent), color-mix(in srgb, var(--wine) 14%, transparent));
+  transition:left .4s cubic-bezier(.4,0,.2,1), width .4s cubic-bezier(.4,0,.2,1), opacity .3s ease;
+  pointer-events:none;
+}
+#mobileNav a.active{color:var(--wine)}
 .lang-toggle{display:flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; flex:none}
 .lang-toggle button{
   background:none; border:none; padding:9px 14px; font-size:.92rem; font-weight:700; color:var(--muted);
@@ -308,6 +316,13 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
   background:linear-gradient(100deg, var(--wine), var(--gold) 55%, var(--gold-soft));
   -webkit-background-clip:text; background-clip:text; color:transparent;
 }
+.hero-grad-text{
+  background:linear-gradient(100deg, #ffffff 0%, #fff6e4 38%, var(--gold-soft) 72%, var(--gold) 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  background-size:200% 100%; animation:titleshift 9s ease-in-out infinite;
+}
+@keyframes titleshift{0%,100%{background-position:0% 0%}50%{background-position:100% 0%}}
+@media (prefers-reduced-motion:reduce){.hero-grad-text{animation:none}}
 
 .cta{background:linear-gradient(120deg, var(--wine), #8a3340 55%, var(--wine)); position:relative; transition:transform .25s ease, box-shadow .25s ease}
 .cta:hover{transform:translateY(-2px); box-shadow:0 14px 30px -12px color-mix(in srgb, var(--wine) 60%, transparent)}
@@ -429,6 +444,7 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
       </span>
     </div>
     <nav class="main" aria-label="Primary">
+      <div class="nav-highlight" id="navHighlight" aria-hidden="true"></div>
       <a href="#about" data-i18n="nav.about">About</a>
       <a href="#ministries" data-i18n="nav.ministries">Ministries</a>
       <a href="#watch" data-i18n="nav.watch">Watch</a>
@@ -484,7 +500,7 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
     <div class="wrap hero-grid">
       <div class="reveal in">
         <p class="eyebrow" data-i18n="hero.eyebrow">Chinese Church In Christ · San Jose, since 1971</p>
-        <h1 data-i18n="hero.headline">Encounter Jesus. Belong to a Family.</h1>
+        <h1 class="hero-grad-text" data-i18n="hero.headline">Encounter Jesus. Belong to a Family.</h1>
         <p class="lead" data-i18n="hero.sub">Whether you're a believer or just exploring, near or far, a long-time resident or passing through — you're welcome in our CCIC family, where lives are transformed by the gospel of Jesus Christ.</p>
         <div class="hero-ctas">
           <a href="#visit" class="cta" data-i18n="hero.cta1">Plan Your Sunday Visit</a>
@@ -612,11 +628,12 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
   </section>
 
   <!-- MISSION / VISION / VALUES -->
-  <section class="band band-ink">
-    <div class="wrap">
+  <section class="band band-ink" style="position:relative; isolation:isolate; overflow:hidden">
+    <div class="mesh" aria-hidden="true"></div>
+    <div class="wrap" style="position:relative; z-index:1">
       <div class="sec-head reveal">
         <p class="eyebrow" data-i18n="mv.eyebrow">Mission, Vision &amp; Values</p>
-        <h2 data-i18n="mv.title">Why CCIC exists</h2>
+        <h2 class="grad-text" data-i18n="mv.title">Why CCIC exists</h2>
       </div>
       <div class="vv-grid">
         <div class="reveal">
@@ -772,8 +789,9 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
   </section>
 
   <!-- GIVE -->
-  <section class="band" id="give">
-    <div class="wrap">
+  <section class="band" id="give" style="position:relative; isolation:isolate; overflow:hidden">
+    <div class="mesh" aria-hidden="true" style="opacity:.3"></div>
+    <div class="wrap" style="position:relative; z-index:1">
       <div class="sec-head reveal">
         <p class="eyebrow" data-i18n="give.eyebrow">Giving</p>
         <h2 data-i18n="give.title">Why we give</h2>
@@ -1316,6 +1334,46 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
     entries.forEach(function(entry){ if(entry.isIntersecting){ entry.target.classList.add("in"); io.unobserve(entry.target); } });
   }, {threshold:.12});
   document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+
+  // scroll-spy nav highlighting
+  (function(){
+    var mainLinks = Array.prototype.slice.call(document.querySelectorAll("nav.main a[href^='#']"));
+    var mobileLinks = Array.prototype.slice.call(document.querySelectorAll("#mobileNav a[href^='#']"));
+    var highlight = document.getElementById("navHighlight");
+    var navMain = document.querySelector("nav.main");
+    if(!mainLinks.length) return;
+
+    var sectionIds = mainLinks.map(function(a){ return a.getAttribute("href").slice(1); });
+    var sections = sectionIds.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+
+    function setActive(id){
+      mainLinks.concat(mobileLinks).forEach(function(a){
+        a.classList.toggle("active", a.getAttribute("href") === "#" + id);
+      });
+      var activeMain = mainLinks.filter(function(a){ return a.getAttribute("href") === "#" + id; })[0];
+      if(activeMain && navMain){
+        var navRect = navMain.getBoundingClientRect();
+        var r = activeMain.getBoundingClientRect();
+        highlight.style.left = (r.left - navRect.left) + "px";
+        highlight.style.width = r.width + "px";
+        highlight.style.opacity = "1";
+      } else if(highlight){
+        highlight.style.opacity = "0";
+      }
+    }
+
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, {rootMargin: "-40% 0px -50% 0px", threshold: 0});
+    sections.forEach(function(sec){ spy.observe(sec); });
+
+    window.addEventListener("resize", function(){
+      var active = mainLinks.filter(function(a){ return a.classList.contains("active"); })[0];
+      if(active) setActive(active.getAttribute("href").slice(1));
+    });
+  })();
 
   // theme picker
   (function(){
