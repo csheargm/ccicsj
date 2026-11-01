@@ -1306,7 +1306,11 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
     "theme.coastal": {en:"Coastal Teal & Coral", "zh-hant":"海岸青珊瑚", "zh-hans":"海岸青珊瑚"},
     "theme.charcoal": {en:"Warm Charcoal & Amber", "zh-hant":"暖炭灰琥珀", "zh-hans":"暖炭灰琥珀"},
     "theme.sage": {en:"Sage & Clay", "zh-hant":"鼠尾草陶土", "zh-hans":"鼠尾草陶土"},
-    "theme.indigo": {en:"Indigo Dusk & Rose", "zh-hant":"暮靛紫玫瑰", "zh-hans":"暮靛紫玫瑰"}
+    "theme.indigo": {en:"Indigo Dusk & Rose", "zh-hant":"暮靛紫玫瑰", "zh-hans":"暮靛紫玫瑰"},
+    "theme.linen": {en:"Soft Linen & Caramel", "zh-hant":"柔亞麻焦糖", "zh-hans":"柔亚麻焦糖"},
+    "theme.mist": {en:"Misty Blue & Mauve", "zh-hant":"薄霧藍紫", "zh-hans":"薄雾蓝紫"},
+    "theme.neutral": {en:"Warm Neutral", "zh-hant":"溫和中性色", "zh-hans":"温和中性色"},
+    "theme.dustyrose": {en:"Dusty Rose & Olive", "zh-hant":"霧玫瑰橄欖", "zh-hans":"雾玫瑰橄榄"}
   };
 
   var THEMES = {
@@ -1329,9 +1333,25 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
     indigo: {
       light:{ink:"#1c1b33",paper:"#f6f4fa",panel:"#ffffff","panel-ink":"#242149",gold:"#6a5acd","gold-soft":"#8b7fe0",wine:"#c6487a",line:"#e1def0","line-ink":"#352f5c",muted:"#55506e","muted-ink":"#cfc9e8"},
       dark:{ink:"#f1eefc",paper:"#120f24",panel:"#1b1735","panel-ink":"#1b1735",gold:"#9c8cf0","gold-soft":"#b6aaf5",wine:"#e072a0",line:"#2c2750","line-ink":"#2c2750",muted:"#b3aed0","muted-ink":"#b3aed0"}
+    },
+    linen: {
+      light:{ink:"#4a4238",paper:"#f7f3ec",panel:"#fffdf9","panel-ink":"#5c5346",gold:"#b08a6a","gold-soft":"#c6a888",wine:"#9c6b5e",line:"#e4ddcf","line-ink":"#6b6153",muted:"#8a8172","muted-ink":"#d9cfc0"},
+      dark:{ink:"#ece6da",paper:"#201c16",panel:"#2a251d","panel-ink":"#2a251d",gold:"#c9a97d","gold-soft":"#dabe99",wine:"#b98574",line:"#3a3328","line-ink":"#3a3328",muted:"#b3a890","muted-ink":"#b3a890"}
+    },
+    mist: {
+      light:{ink:"#3a4452",paper:"#f3f5f7",panel:"#ffffff","panel-ink":"#454f5c",gold:"#7f97a8","gold-soft":"#9aadbc",wine:"#8f7ca3",line:"#dde3e8","line-ink":"#54606e",muted:"#6b7684","muted-ink":"#c3ccd4"},
+      dark:{ink:"#e7ecf1",paper:"#141a20",panel:"#1c242c","panel-ink":"#1c242c",gold:"#9bb3c3","gold-soft":"#b3c7d4",wine:"#ac97c0",line:"#2b333c","line-ink":"#2b333c",muted:"#9aa7b4","muted-ink":"#9aa7b4"}
+    },
+    neutral: {
+      light:{ink:"#3d3a35",paper:"#f6f4f0",panel:"#ffffff","panel-ink":"#48453f",gold:"#a68b5b","gold-soft":"#bda67c",wine:"#8a6f5a",line:"#e3e0d8","line-ink":"#57534a",muted:"#79756b","muted-ink":"#cfcabd"},
+      dark:{ink:"#ece9e2",paper:"#1a1815",panel:"#231f1a","panel-ink":"#231f1a",gold:"#c2a877","gold-soft":"#d4bd93",wine:"#a68b72",line:"#322d26","line-ink":"#322d26",muted:"#aaa495","muted-ink":"#aaa495"}
+    },
+    dustyrose: {
+      light:{ink:"#3f3a2f",paper:"#f6f2e9",panel:"#fffdf7","panel-ink":"#4a4536",gold:"#9c8a52","gold-soft":"#b3a06c",wine:"#b98a86",line:"#e5ddc9","line-ink":"#5b5440",muted:"#8c8469","muted-ink":"#d7cdb0"},
+      dark:{ink:"#eee8d8",paper:"#1c1a12",panel:"#26231a","panel-ink":"#26231a",gold:"#c4b483","gold-soft":"#d4c69c",wine:"#d0a29d",line:"#352f22","line-ink":"#352f22",muted:"#b9b092","muted-ink":"#b9b092"}
     }
   };
-  var THEME_ORDER = ["heritage","coastal","charcoal","sage","indigo"];
+  var THEME_ORDER = ["linen","mist","neutral","dustyrose","heritage","coastal","charcoal","sage","indigo"];
 
   var LANG_CLASS = {en:"lang-en", "zh-hant":"lang-zh-hant", "zh-hans":"lang-zh-hans"};
   var root = document.getElementById("root");
@@ -1441,7 +1461,7 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
     var pop = document.getElementById("themePop");
     var list = document.getElementById("themeOptList");
     var darkMq = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
-    var current = "heritage";
+    var current = "linen";
 
     function isDark(){
       if(root.getAttribute("data-theme") === "dark") return true;
@@ -1494,7 +1514,7 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
       darkMq.addEventListener("change", function(){ applyTheme(current); });
     }
 
-    var saved = "heritage";
+    var saved = "linen";
     try{
       var s = localStorage.getItem("ccicTheme");
       if(s && THEMES[s]) saved = s;
