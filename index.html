@@ -386,6 +386,32 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
 .toast .dot{width:7px;height:7px;border-radius:50%; background:#3e9a66; flex:none}
 
 @media (max-width:480px){.panel{bottom:max(80px, calc(80px + env(safe-area-inset-bottom,0px))); right:16px; left:16px; width:auto}}
+
+/* ================= theme picker ================= */
+.theme-btn{
+  display:flex; align-items:center; gap:7px; border:1px solid var(--line); background:var(--panel);
+  border-radius:999px; padding:8px 13px; font-size:.88rem; font-weight:700; color:var(--ink); flex:none;
+}
+.theme-btn .swatch-dot{width:16px; height:16px; border-radius:50%; background:linear-gradient(120deg,var(--wine),var(--gold)); flex:none; border:1px solid rgba(0,0,0,.08)}
+.theme-pop{
+  position:absolute; top:calc(100% + 10px); right:0; z-index:70; display:none; flex-direction:column; gap:4px;
+  background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:10px; box-shadow:0 24px 50px -18px rgba(0,0,0,.4);
+  min-width:230px;
+}
+.theme-pop.open{display:flex}
+.theme-pop .theme-pop-label{font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); font-weight:800; padding:6px 10px 4px}
+.theme-opt{
+  display:flex; align-items:center; gap:10px; border:none; background:none; border-radius:10px; padding:9px 10px;
+  font-size:.9rem; font-weight:600; color:var(--ink); text-align:left; width:100%;
+}
+.theme-opt:hover{background:var(--paper)}
+.theme-opt.active{background:color-mix(in srgb, var(--gold) 16%, transparent); font-weight:800}
+.theme-opt .swatches{display:flex; gap:4px; flex:none}
+.theme-opt .sw{width:16px; height:16px; border-radius:50%; border:1px solid rgba(0,0,0,.1)}
+.theme-opt .opt-name{flex:1}
+.theme-opt .opt-check{width:16px; text-align:center; color:var(--gold); font-weight:900}
+.hdr-actions{position:relative}
+@media (max-width:1060px){.theme-btn span.tb-label{display:none}.theme-btn{padding:8px 10px}}
 </style>
 </head>
 <body>
@@ -417,6 +443,14 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
       </div>
       <a href="#visit" class="cta ghost" data-i18n="nav.imnew">I'm New</a>
       <a href="#visit" class="cta" data-i18n="nav.visitcta">Plan Your Visit</a>
+      <button type="button" class="theme-btn" id="themeBtn" aria-haspopup="true" aria-expanded="false">
+        <span class="swatch-dot" aria-hidden="true"></span>
+        <span class="tb-label" data-i18n="theme.btn">Theme</span>
+      </button>
+      <div class="theme-pop" id="themePop" role="menu" aria-label="Color theme">
+        <div class="theme-pop-label" data-i18n="theme.pick">Preview a color theme</div>
+        <div id="themeOptList"></div>
+      </div>
       <button class="burger" id="burgerBtn" aria-label="Menu" aria-expanded="false">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
       </button>
@@ -1187,8 +1221,40 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
     "agent.newcard.p": {en:"Weekly intercessory prayer for our church, our city, and the nations — added live by the AI content agent.",
       "zh-hant":"每週為教會、城市與萬民代禱——由AI內容助理即時新增。",
       "zh-hans":"每周为教会、城市与万民代祷——由AI内容助理即时新增。"},
-    "agent.newcard.link": {en:"New — details coming soon →", "zh-hant":"新增事工 — 詳情即將公佈 →", "zh-hans":"新增事工 — 详情即将公布 →"}
+    "agent.newcard.link": {en:"New — details coming soon →", "zh-hant":"新增事工 — 詳情即將公佈 →", "zh-hans":"新增事工 — 详情即将公布 →"},
+
+    "theme.btn": {en:"Theme", "zh-hant":"配色", "zh-hans":"配色"},
+    "theme.pick": {en:"Preview a color theme", "zh-hant":"預覽配色方案", "zh-hans":"预览配色方案"},
+    "theme.heritage": {en:"Heritage Navy & Gold", "zh-hant":"傳承藏青金", "zh-hans":"传承藏青金"},
+    "theme.coastal": {en:"Coastal Teal & Coral", "zh-hant":"海岸青珊瑚", "zh-hans":"海岸青珊瑚"},
+    "theme.charcoal": {en:"Warm Charcoal & Amber", "zh-hant":"暖炭灰琥珀", "zh-hans":"暖炭灰琥珀"},
+    "theme.sage": {en:"Sage & Clay", "zh-hant":"鼠尾草陶土", "zh-hans":"鼠尾草陶土"},
+    "theme.indigo": {en:"Indigo Dusk & Rose", "zh-hant":"暮靛紫玫瑰", "zh-hans":"暮靛紫玫瑰"}
   };
+
+  var THEMES = {
+    heritage: {
+      light:{ink:"#152238",paper:"#f6f4ef",panel:"#fcfbf8","panel-ink":"#1a2740",gold:"#b68a3d","gold-soft":"#c79a4f",wine:"#732f3b",line:"#d8d2c2","line-ink":"#2d3b57",muted:"#5b5f52","muted-ink":"#9aa7bf"},
+      dark:{ink:"#f1ede2",paper:"#0c1322",panel:"#121b2e","panel-ink":"#121b2e",gold:"#d1a855","gold-soft":"#e0bc74",wine:"#c1707c",line:"#263150","line-ink":"#263150",muted:"#aab2c4","muted-ink":"#aab2c4"}
+    },
+    coastal: {
+      light:{ink:"#0f2a2d",paper:"#f2f7f6",panel:"#ffffff","panel-ink":"#123234",gold:"#2f8f7e","gold-soft":"#4facA0",wine:"#e2734f",line:"#d7e4e1","line-ink":"#1d4245",muted:"#4d6361","muted-ink":"#bcd3cf"},
+      dark:{ink:"#eef6f4",paper:"#0b1a1c",panel:"#102626","panel-ink":"#102626",gold:"#5fc2ae","gold-soft":"#7fd4c2",wine:"#f08a65",line:"#1d3836","line-ink":"#1d3836",muted:"#9fc1bc","muted-ink":"#9fc1bc"}
+    },
+    charcoal: {
+      light:{ink:"#1a1a1a",paper:"#f7f5f2",panel:"#ffffff","panel-ink":"#262523",gold:"#c9742a","gold-soft":"#e0944f",wine:"#b2342c",line:"#e2ddd4","line-ink":"#38362f",muted:"#5a564e","muted-ink":"#d8d2c4"},
+      dark:{ink:"#f5f1ea",paper:"#121212",panel:"#1c1c1c","panel-ink":"#1c1c1c",gold:"#e08f3e","gold-soft":"#f0ab66",wine:"#e05b4e",line:"#2e2b26","line-ink":"#2e2b26",muted:"#b9b2a5","muted-ink":"#b9b2a5"}
+    },
+    sage: {
+      light:{ink:"#2b332b",paper:"#f4f3ec",panel:"#ffffff","panel-ink":"#32392f",gold:"#7c8f5e","gold-soft":"#9bab7f",wine:"#bf6a4d",line:"#dedbc9","line-ink":"#454c3d",muted:"#5c6354","muted-ink":"#cfd6bf"},
+      dark:{ink:"#edeee2",paper:"#141712",panel:"#1d2118","panel-ink":"#1d2118",gold:"#a6bb85","gold-soft":"#bdcf9e",wine:"#d98566",line:"#2b3024","line-ink":"#2b3024",muted:"#aab2a0","muted-ink":"#aab2a0"}
+    },
+    indigo: {
+      light:{ink:"#1c1b33",paper:"#f6f4fa",panel:"#ffffff","panel-ink":"#242149",gold:"#6a5acd","gold-soft":"#8b7fe0",wine:"#c6487a",line:"#e1def0","line-ink":"#352f5c",muted:"#55506e","muted-ink":"#cfc9e8"},
+      dark:{ink:"#f1eefc",paper:"#120f24",panel:"#1b1735","panel-ink":"#1b1735",gold:"#9c8cf0","gold-soft":"#b6aaf5",wine:"#e072a0",line:"#2c2750","line-ink":"#2c2750",muted:"#b3aed0","muted-ink":"#b3aed0"}
+    }
+  };
+  var THEME_ORDER = ["heritage","coastal","charcoal","sage","indigo"];
 
   var LANG_CLASS = {en:"lang-en", "zh-hant":"lang-zh-hant", "zh-hans":"lang-zh-hans"};
   var root = document.getElementById("root");
@@ -1220,6 +1286,7 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
       btn.setAttribute("aria-pressed", btn.getAttribute("data-lang") === lang ? "true" : "false");
     });
     try{ localStorage.setItem("ccicLang", lang); }catch(e){}
+    if(window.__refreshThemeList) window.__refreshThemeList();
   }
 
   document.querySelectorAll(".lang-toggle button").forEach(function(btn){
@@ -1249,6 +1316,77 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
     entries.forEach(function(entry){ if(entry.isIntersecting){ entry.target.classList.add("in"); io.unobserve(entry.target); } });
   }, {threshold:.12});
   document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+
+  // theme picker
+  (function(){
+    var root = document.documentElement;
+    var btn = document.getElementById("themeBtn");
+    var pop = document.getElementById("themePop");
+    var list = document.getElementById("themeOptList");
+    var darkMq = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
+    var current = "heritage";
+
+    function isDark(){
+      if(root.getAttribute("data-theme") === "dark") return true;
+      if(root.getAttribute("data-theme") === "light") return false;
+      return !!(darkMq && darkMq.matches);
+    }
+
+    function applyTheme(name){
+      var theme = THEMES[name];
+      if(!theme) return;
+      var tokens = isDark() ? theme.dark : theme.light;
+      Object.keys(tokens).forEach(function(k){ root.style.setProperty("--" + k, tokens[k]); });
+      current = name;
+      try{ localStorage.setItem("ccicTheme", name); }catch(e){}
+      renderList();
+    }
+
+    function renderList(){
+      list.innerHTML = "";
+      THEME_ORDER.forEach(function(name){
+        var th = THEMES[name];
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "theme-opt" + (name === current ? " active" : "");
+        b.setAttribute("role", "menuitemradio");
+        b.setAttribute("aria-checked", name === current ? "true" : "false");
+        b.innerHTML =
+          '<span class="swatches">' +
+            '<span class="sw" style="background:' + th.light.wine + '"></span>' +
+            '<span class="sw" style="background:' + th.light.gold + '"></span>' +
+          '</span>' +
+          '<span class="opt-name">' + t("theme." + name) + '</span>' +
+          '<span class="opt-check">' + (name === current ? "✓" : "") + '</span>';
+        b.addEventListener("click", function(){ applyTheme(name); closePop(); });
+        list.appendChild(b);
+      });
+    }
+
+    function openPop(){ pop.classList.add("open"); btn.setAttribute("aria-expanded","true"); renderList(); }
+    function closePop(){ pop.classList.remove("open"); btn.setAttribute("aria-expanded","false"); }
+
+    btn.addEventListener("click", function(e){
+      e.stopPropagation();
+      pop.classList.contains("open") ? closePop() : openPop();
+    });
+    document.addEventListener("click", function(e){
+      if(!pop.contains(e.target) && e.target !== btn) closePop();
+    });
+
+    if(darkMq && darkMq.addEventListener){
+      darkMq.addEventListener("change", function(){ applyTheme(current); });
+    }
+
+    var saved = "heritage";
+    try{
+      var s = localStorage.getItem("ccicTheme");
+      if(s && THEMES[s]) saved = s;
+    }catch(e){}
+    applyTheme(saved);
+
+    // expose so applyLang() can refresh the list's localized labels after a language switch
+    window.__refreshThemeList = renderList;
+  })();
 
   // hero photo crossfade
   (function(){
