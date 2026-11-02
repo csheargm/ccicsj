@@ -420,6 +420,15 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
 }
 .panel.open{display:flex}
 .panel.agentpanel{width:min(460px, calc(100vw - 32px)); max-height:min(80vh,700px)}
+.gate-overlay{display:none; position:fixed; inset:0; z-index:80; background:rgba(8,12,12,.55); backdrop-filter:blur(3px); align-items:center; justify-content:center; padding:20px}
+.gate-overlay.open{display:flex}
+.gate-box{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:26px; width:min(380px, 100%); box-shadow:0 30px 70px -20px rgba(10,15,25,.5)}
+.gate-box h4{margin:0 0 10px; font-family:var(--font-display); font-size:1.15rem}
+.gate-box p{margin:0 0 16px; font-size:.84rem; color:var(--muted); line-height:1.5}
+.gate-box input{width:100%; border:1px solid var(--line); border-radius:10px; padding:11px 14px; font-size:.95rem; background:var(--paper); color:var(--ink); box-sizing:border-box}
+.gate-error{color:var(--wine); font-size:.8rem; margin-top:8px}
+.gate-actions{display:flex; justify-content:flex-end; gap:10px; margin-top:16px}
+.gate-actions button[type="button"]{background:none; border:none; color:var(--muted); font-weight:600; font-size:.88rem}
 .panel-head{padding:16px 18px; background:linear-gradient(120deg,var(--band-bg),#1c2a45); color:#fff; display:flex; align-items:center; justify-content:space-between; gap:10px}
 .panel-head h4{margin:0; font-family:var(--font-display); font-size:1rem; color:#fff}
 .panel-head p{margin:2px 0 0; font-size:.74rem; color:#c7cedd}
@@ -565,7 +574,7 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
             <div><div class="svc-name" data-i18n="hero.card.cantonese">Cantonese Worship</div><div class="svc-room" data-i18n="hero.card.sanctuaryB">Sanctuary B</div></div>
             <div class="svc-time" data-i18n="svc.time.cantonese" id="svc-time-cantonese">11:00–12:15</div>
           </div>
-          <div class="addr">1490 Saratoga Avenue, San Jose, CA 95129 · (408) 364-2242</div>
+          <div class="addr"><a href="https://maps.google.com/?q=1490+Saratoga+Avenue,+San+Jose,+CA+95129" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline">1490 Saratoga Avenue, San Jose, CA 95129</a> · <a href="tel:+14083642242" style="color:inherit; text-decoration:underline">(408) 364-2242</a></div>
         </div>
       </div>
     </div>
@@ -1011,10 +1020,10 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
       <div>
         <h4 data-i18n="foot.visit">Visit Us</h4>
         <ul>
-          <li>1490 Saratoga Avenue</li>
-          <li>San Jose, CA 95129</li>
-          <li>(408) 364-2242</li>
-          <li>ccic-sj@hotmail.com</li>
+          <li><a href="https://maps.google.com/?q=1490+Saratoga+Avenue,+San+Jose,+CA+95129" target="_blank" rel="noopener">1490 Saratoga Avenue</a></li>
+          <li><a href="https://maps.google.com/?q=1490+Saratoga+Avenue,+San+Jose,+CA+95129" target="_blank" rel="noopener">San Jose, CA 95129</a></li>
+          <li><a href="tel:+14083642242">(408) 364-2242</a></li>
+          <li><a href="mailto:ccic-sj@hotmail.com">ccic-sj@hotmail.com</a></li>
         </ul>
       </div>
     </div>
@@ -1044,6 +1053,22 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M3 12l18-8-7 18-3-7-8-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
     </button>
   </form>
+</div>
+
+<!-- STAFF GATE (custom modal — not a native browser prompt, which some browsers block) -->
+<div class="gate-overlay" id="gateOverlay" role="dialog" aria-modal="true" aria-label="Staff passcode">
+  <div class="gate-box">
+    <h4 data-i18n="agent.gate.title">Staff preview</h4>
+    <p data-i18n="agent.gate.prompt">For this review build, enter the passcode "elder-demo" to continue. This is a lightweight demo gate, not real security — in production this would require real staff sign-in.</p>
+    <form id="gateForm">
+      <input type="text" id="gateInput" autocomplete="off" data-i18n-ph="agent.gate.ph" placeholder="Passcode">
+      <div id="gateError" class="gate-error" data-i18n="agent.gate.wrong" hidden>Incorrect passcode. This demo is for staff use only.</div>
+      <div class="gate-actions">
+        <button type="button" id="gateCancel" data-i18n="agent.gate.cancel">Cancel</button>
+        <button type="submit" class="btnsm approve" data-i18n="agent.gate.submit">Continue</button>
+      </div>
+    </form>
+  </div>
 </div>
 
 <!-- STAFF AI CONTENT AGENT DEMO -->
@@ -1437,6 +1462,10 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
       "zh-hant":"僅供同工使用的示範功能。本審閱版本請輸入通關密碼「elder-demo」以繼續。（此為輕量示範用途的簡易關卡，並非真實安全機制——正式版本將需要真實的同工登入驗證。）",
       "zh-hans":"仅供同工使用的示范功能。本审阅版本请输入通关密码「elder-demo」以继续。（此为轻量示范用途的简易关卡，并非真实安全机制——正式版本将需要真实的同工登入验证。）"},
     "agent.gate.wrong": {en:"Incorrect passcode. This demo is for staff use only.", "zh-hant":"通關密碼錯誤。此示範功能僅供同工使用。", "zh-hans":"通关密码错误。此示范功能仅供同工使用。"},
+    "agent.gate.title": {en:"Staff preview", "zh-hant":"同工預覽", "zh-hans":"同工预览"},
+    "agent.gate.ph": {en:"Passcode", "zh-hant":"通關密碼", "zh-hans":"通关密码"},
+    "agent.gate.cancel": {en:"Cancel", "zh-hant":"取消", "zh-hans":"取消"},
+    "agent.gate.submit": {en:"Continue", "zh-hant":"繼續", "zh-hans":"继续"},
     "agent.title": {en:"AI Content Agent", "zh-hant":"AI 內容助理", "zh-hans":"AI 内容助理"},
     "agent.sub": {en:"Staff demo — every change waits for elder approval", "zh-hant":"同工演示 — 所有變更皆需長老核准", "zh-hans":"同工演示 — 所有变更皆需长老核准"},
     "agent.disclaimer": {en:"Simulated agent for this demo — matches a few example commands below and edits this page live, in your browser tab only. Changes are never saved, synced to other fields that show the same fact, or visible to other visitors. No real backend or database is connected.",
@@ -1944,14 +1973,34 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
     }
 
     var unlocked = false;
-    fab.addEventListener("click", function(){
-      if(!unlocked){
-        var code = window.prompt(t("agent.gate.prompt"));
-        if(code === null) return;
-        if(code.trim().toLowerCase() !== "elder-demo"){ window.alert(t("agent.gate.wrong")); return; }
-        unlocked = true;
-      }
+    var gateOverlay = document.getElementById("gateOverlay");
+    var gateForm = document.getElementById("gateForm");
+    var gateInput = document.getElementById("gateInput");
+    var gateError = document.getElementById("gateError");
+    var gateCancel = document.getElementById("gateCancel");
+
+    function openPanel(){
       panel.classList.add("open"); document.getElementById("chatPanel").classList.remove("open"); start(); input.focus();
+    }
+    function openGate(){
+      gateError.hidden = true; gateInput.value = "";
+      gateOverlay.classList.add("open");
+      setTimeout(function(){ gateInput.focus(); }, 30);
+    }
+    function closeGate(){ gateOverlay.classList.remove("open"); }
+
+    fab.addEventListener("click", function(){
+      if(unlocked){ openPanel(); } else { openGate(); }
+    });
+    gateCancel.addEventListener("click", closeGate);
+    gateOverlay.addEventListener("click", function(e){ if(e.target === gateOverlay) closeGate(); });
+    gateForm.addEventListener("submit", function(ev){
+      ev.preventDefault();
+      if(gateInput.value.trim().toLowerCase() === "elder-demo"){
+        unlocked = true; closeGate(); openPanel();
+      } else {
+        gateError.hidden = false; gateInput.focus(); gateInput.select();
+      }
     });
     closeBtn.addEventListener("click", function(){ panel.classList.remove("open"); });
     form.addEventListener("submit", function(ev){
