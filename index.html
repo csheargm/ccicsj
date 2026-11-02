@@ -368,7 +368,9 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
 .min-card:hover::before{transform:scaleX(1)}
 
 .hero-stats div b{background:linear-gradient(100deg,var(--wine),var(--gold-soft)); -webkit-background-clip:text; background-clip:text; color:transparent}
-.hero-card{background:rgba(252,250,244,.96); backdrop-filter:blur(10px); box-shadow:0 30px 60px -20px rgba(0,0,0,.5)}
+/* hero-card keeps a fixed light background in both themes, so its text uses fixed (not theme) colors to stay readable */
+.hero-card{background:rgba(252,250,244,.96); backdrop-filter:blur(10px); box-shadow:0 30px 60px -20px rgba(0,0,0,.5); color:#15213a}
+.hero-card .svc-room,.hero-card .addr{color:#5c6474}
 .brand-mark{background:linear-gradient(150deg,var(--wine),var(--ink) 60%, var(--gold) 140%)}
 
 /* ================= floating widgets ================= */
@@ -532,13 +534,13 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
         <p class="lead" data-i18n="hero.sub">Whether you're a believer or just exploring, near or far, a long-time resident or passing through — you're welcome in our CCIC family, where lives are transformed by the gospel of Jesus Christ.</p>
         <div class="hero-ctas">
           <a href="#visit" class="cta" data-i18n="hero.cta1">Plan Your Sunday Visit</a>
-          <a href="#watch" class="cta grad2" data-i18n="hero.cta3">▶ Watch This Week's Message</a>
+          <a href="#watch" class="cta grad2" data-i18n="hero.cta3">▶ Watch &amp; Listen</a>
         </div>
         <div class="hero-stats">
-          <div><b data-count="1971">0</b><span data-i18n="hero.stat1">Church founded</span></div>
-          <div><b data-count="3">0</b><span data-i18n="hero.stat2">Languages, one church</span></div>
-          <div><b data-count="6">0</b><span data-i18n="hero.stat3">Bay Area churches planted</span></div>
-          <div><b data-count="2">0</b><span data-i18n="hero.stat4">Sunday services</span></div>
+          <div><b data-count="1971">1971</b><span data-i18n="hero.stat1">Church founded</span></div>
+          <div><b data-count="3">3</b><span data-i18n="hero.stat2">Languages, one church</span></div>
+          <div><b data-count="6">6</b><span data-i18n="hero.stat3">Bay Area churches planted</span></div>
+          <div><b data-count="2">2</b><span data-i18n="hero.stat4">Sunday services</span></div>
         </div>
       </div>
       <div class="reveal in">
@@ -617,8 +619,8 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
     <div class="wrap">
       <div class="sec-head reveal">
         <p class="eyebrow" data-i18n="next.eyebrow">Next Generation</p>
-        <h2 data-i18n="next.title">Built for young professionals and young families</h2>
-        <p data-i18n="next.sub">Most of our young adults are Chinese professionals who recently moved from China, Taiwan, and across Asia for Silicon Valley careers — alongside American-born Chinese young professionals who grew up here. Two tracks, one church family.</p>
+        <h2 data-i18n="next.title">Find community as a young professional or young family</h2>
+        <p data-i18n="next.sub">Many of our young adults are Chinese professionals who recently moved from China, Taiwan, and across Asia for Silicon Valley careers — alongside American-born Chinese young professionals who grew up here. Two language paths, one church family.</p>
       </div>
 
       <div class="spotlight reveal glow-target">
@@ -629,11 +631,11 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
           <span class="spotlight-badge" data-i18n="next.badge3">🏡 Small Groups</span>
         </div>
         <h3 data-i18n="next.spot.h">Two languages, one young-professional community</h3>
-        <p data-i18n="next.spot.p">Whether you just landed from Shanghai, Taipei, or Shenzhen for your first tech job, or you grew up in an English-speaking church, there's a track built for you — not a program you have to adapt to.</p>
-        <a href="#visit" class="cta" style="align-self:flex-start" data-i18n="next.spot.cta">Find Your Track →</a>
+        <p data-i18n="next.spot.p">Whether you just landed from Shanghai, Taipei, or Shenzhen for your first tech job, or you grew up in an English-speaking church, here are two starting points — pick the one where you'd feel most at home.</p>
+        <a href="#nextgen-paths" class="cta" style="align-self:flex-start" data-i18n="next.spot.cta">See Both Paths ↓</a>
       </div>
 
-      <div class="belief-grid" style="grid-template-columns:1fr 1fr; margin-top:28px">
+      <div class="belief-grid" id="nextgen-paths" style="grid-template-columns:1fr 1fr; margin-top:28px">
         <div class="belief-card reveal">
           <span class="icon-badge"><svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M3 21h18M6 21V9l6-4 6 4v12M10 21v-6h4v6" stroke="currentColor" stroke-width="1.4"/></svg></span>
           <h3 data-i18n="next.path1.h">Mandarin Young Professionals Fellowship</h3>
@@ -648,10 +650,11 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
         </div>
       </div>
 
-      <div class="belief-grid" style="grid-template-columns:repeat(3,1fr); margin-top:28px">
+      <p class="reveal" style="margin-top:28px; text-align:center; color:var(--muted); font-size:.82rem; letter-spacing:.02em" data-i18n="next.sample.note">Sample stories for this demo — to be replaced with real, permissioned testimonies before launch.</p>
+      <div class="belief-grid" style="grid-template-columns:repeat(3,1fr); margin-top:14px">
         <div class="belief-card quote-card reveal">
           <span class="quote-mark" aria-hidden="true">&ldquo;</span>
-          <p data-i18n="next.t1.q">I hadn't been to church since high school. Someone from Abide SJ just kept inviting me to dinner. Six months later I was leading worship.</p>
+          <p data-i18n="next.t1.q">I hadn't been to church since high school and had a lot of questions. Someone from Abide SJ just kept inviting me to dinner — no pressure, no pitch. That's how I found a few real friends here.</p>
           <div class="quote-by"><b data-i18n="next.t1.name">— Kevin L.</b><span data-i18n="next.t1.role">Software engineer, American-born, Abide SJ</span></div>
         </div>
         <div class="belief-card quote-card reveal">
@@ -760,7 +763,7 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
             <span class="min-tag" data-i18n="min.m1.tag">國語部 · Mandarin</span>
             <h3 data-i18n="min.m1.h">Mandarin Congregation</h3>
             <p data-i18n="min.m1.p">Sunday worship, Sunday school, small-group Bible studies, and fellowship for Mandarin-speaking families.</p>
-            <span class="min-link" data-i18n="min.m1.link">Sundays 9:30 &amp; 11:00 — Sanctuary A →</span>
+            <span class="min-link" data-i18n="min.m1.link">Worship 9:30 · Sunday School 11:00 — Sanctuary A →</span>
           </div>
         </div>
         <div class="min-card has-photo reveal">
@@ -876,7 +879,7 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
       <div class="spotlight reveal glow-target" id="cal-e3">
         <div class="mesh" aria-hidden="true"></div>
         <div class="spotlight-badges">
-          <span class="spotlight-badge">📅&nbsp;<span data-i18n="cal.e3.date" id="cal-e3-date">Sep 25–27</span></span>
+          <span class="spotlight-badge">📅&nbsp;<span data-i18n="cal.e3.date" id="cal-e3-date">Sep 25–27, 2027</span></span>
           <span class="spotlight-badge" data-i18n="cal.e3.loc">📍 CCIC San Jose</span>
           <span class="spotlight-badge" data-i18n="cal.e3.tag">✦ Annual Conference</span>
         </div>
@@ -885,9 +888,9 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
       </div>
 
       <div class="cal-grid reveal">
-        <div class="cal-card"><div class="cal-date" data-i18n="cal.e1.date">Monthly, Sat</div><p data-i18n="cal.e1.p">Cupertino Village evangelism — the "123, Let's Go!" movement</p></div>
-        <div class="cal-card"><div class="cal-date" data-i18n="cal.e2.date">Aug 9</div><p data-i18n="cal.e2.p">CCIC Neighborhood Block Party</p></div>
-        <div class="cal-card"><div class="cal-date" data-i18n="cal.e4.date">Dec 5</div><p data-i18n="cal.e4.p">HelpOneChild Giving Tree</p></div>
+        <div class="cal-card"><div class="cal-date" data-i18n="cal.e1.date">Monthly · 2nd Saturday</div><p data-i18n="cal.e1.p">Cupertino Village evangelism — the "123, Let's Go!" movement</p></div>
+        <div class="cal-card"><div class="cal-date" data-i18n="cal.e2.date">Aug 9, 2027</div><p data-i18n="cal.e2.p">CCIC Neighborhood Block Party</p></div>
+        <div class="cal-card"><div class="cal-date" data-i18n="cal.e4.date">Dec 5, 2026</div><p data-i18n="cal.e4.p">HelpOneChild Giving Tree</p></div>
       </div>
     </div>
   </section>
@@ -1048,11 +1051,11 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
 <div class="fab-stack">
   <button type="button" class="fab agent" id="agentFab">
     <svg viewBox="0 0 24 24" fill="none"><path d="M12 2a4 4 0 014 4v1a4 4 0 01-8 0V6a4 4 0 014-4Z" stroke="currentColor" stroke-width="1.5"/><path d="M5 21v-2a5 5 0 015-5h4a5 5 0 015 5v2" stroke="currentColor" stroke-width="1.5"/><path d="M3 9l-1 2 1 2M21 9l1 2-1 2" stroke="currentColor" stroke-width="1.5"/></svg>
-    <span data-i18n="agent.fab">Staff: AI Content Agent</span>
+    <span data-i18n="agent.fab">Staff: AI Content Agent (Demo)</span>
   </button>
   <button type="button" class="fab" id="chatFab">
     <svg viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.4 8.4 0 01-4.3 7.3L12 21l-1-3.2A8.5 8.5 0 1121 11.5Z" stroke="currentColor" stroke-width="1.6"/></svg>
-    <span data-i18n="chat.fab">Ask CCIC</span>
+    <span data-i18n="chat.fab">Ask CCIC (Demo)</span>
   </button>
 </div>
 
@@ -1165,7 +1168,7 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
     "min.m1.tag": {en:"國語部 · Mandarin", "zh-hant":"國語部 · Mandarin", "zh-hans":"国语部 · Mandarin"},
     "min.m1.h": {en:"Mandarin Congregation", "zh-hant":"國語部", "zh-hans":"国语部"},
     "min.m1.p": {en:"Sunday worship, Sunday school, small-group Bible studies, and fellowship for Mandarin-speaking families.", "zh-hant":"主日崇拜、主日學、小組查經與團契生活，服事國語家庭。", "zh-hans":"主日崇拜、主日学、小组查经与团契生活，服事国语家庭。"},
-    "min.m1.link": {en:"Sundays 9:30 & 11:00 — Sanctuary A →", "zh-hant":"主日 9:30、11:00 — A堂 →", "zh-hans":"主日 9:30、11:00 — A堂 →"},
+    "min.m1.link": {en:"Worship 9:30 · Sunday School 11:00 — Sanctuary A →", "zh-hant":"崇拜 9:30 · 主日學 11:00 — A堂 →", "zh-hans":"崇拜 9:30 · 主日学 11:00 — A堂 →"},
     "min.m2.tag": {en:"英語部 · English — Abide SJ", "zh-hant":"英語部 · Abide SJ", "zh-hans":"英语部 · Abide SJ"},
     "min.m2.h": {en:"English Ministry", "zh-hant":"英語部", "zh-hans":"英语部"},
     "min.m2.p": {en:"Abide SJ gathers English-speaking adults and families for worship and community alongside our youth.", "zh-hant":"Abide SJ 聚集英語成人與家庭，與青年事工一同敬拜、建立團契。", "zh-hans":"Abide SJ 聚集英语成人与家庭，与青年事工一同敬拜、建立团契。"},
@@ -1199,13 +1202,13 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
     "cal.quote": {en:"“To share the good news of Jesus Christ globally and locally through words and acts of compassion.”",
       "zh-hant":"「在本地和全球經由愛心的話語和行動，傳揚耶穌基督大好的信息。」",
       "zh-hans":"「在本地和全球经由爱心的话语和行动，传扬耶稣基督大好的信息。」"},
-    "cal.e1.date": {en:"Monthly, Sat", "zh-hant":"每月第二個禮拜六", "zh-hans":"每月第二个礼拜六"},
+    "cal.e1.date": {en:"Monthly · 2nd Saturday", "zh-hant":"每月第二個禮拜六", "zh-hans":"每月第二个礼拜六"},
     "cal.e1.p": {en:"Cupertino Village evangelism — the “123, Let's Go!” movement", "zh-hant":"中信廣場傳福音 — 123啟動Let's Go!", "zh-hans":"中信广场传福音 — 123启动Let's Go!"},
-    "cal.e2.date": {en:"Aug 9", "zh-hant":"8月9日", "zh-hans":"8月9日"},
+    "cal.e2.date": {en:"Aug 9, 2027", "zh-hant":"2027年8月9日", "zh-hans":"2027年8月9日"},
     "cal.e2.p": {en:"CCIC Neighborhood Block Party", "zh-hant":"CCIC 社區聯歡會", "zh-hans":"CCIC 社区联欢会"},
-    "cal.e3.date": {en:"Sep 25–27", "zh-hant":"9月25–27日", "zh-hans":"9月25–27日"},
+    "cal.e3.date": {en:"Sep 25–27, 2027", "zh-hant":"2027年9月25–27日", "zh-hans":"2027年9月25–27日"},
     "cal.e3.p": {en:"Mission Conference: Reaching the World", "zh-hant":"宣教年會：傳揚福音到地極", "zh-hans":"宣教年会：传扬福音到地极"},
-    "cal.e4.date": {en:"Dec 5", "zh-hant":"12月5日", "zh-hans":"12月5日"},
+    "cal.e4.date": {en:"Dec 5, 2026", "zh-hant":"2026年12月5日", "zh-hans":"2026年12月5日"},
     "cal.e4.p": {en:"HelpOneChild Giving Tree", "zh-hant":"HelpOneChild 愛心聖誕樹", "zh-hans":"HelpOneChild 爱心圣诞树"},
     "cal.e3.loc": {en:"📍 CCIC San Jose", "zh-hant":"📍 聖荷西基督徒會堂", "zh-hans":"📍 圣荷西基督徒会堂"},
     "cal.e3.tag": {en:"✦ Annual Conference", "zh-hant":"✦ 年度盛會", "zh-hans":"✦ 年度盛会"},
@@ -1271,7 +1274,7 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
 
     "nav.community": {en:"Community", "zh-hant":"社區", "zh-hans":"社区"},
     "nav.watch": {en:"Watch", "zh-hant":"講道", "zh-hans":"讲道"},
-    "hero.cta3": {en:"▶ Watch This Week's Message", "zh-hant":"▶ 觀看本週信息", "zh-hans":"▶ 观看本周信息"},
+    "hero.cta3": {en:"▶ Watch & Listen", "zh-hant":"▶ 觀看與收聽", "zh-hans":"▶ 观看与收听"},
 
     "svc.time.mandarin": {en:"9:30–10:45", "zh-hant":"9:30–10:45", "zh-hans":"9:30–10:45"},
     "svc.time.english": {en:"11:00–12:15", "zh-hant":"11:00–12:15", "zh-hans":"11:00–12:15"},
@@ -1300,18 +1303,21 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
 
     "nav.nextgen": {en:"Next Gen", "zh-hant":"新生代", "zh-hans":"新生代"},
     "next.eyebrow": {en:"Next Generation", "zh-hant":"新生代", "zh-hans":"新生代"},
-    "next.title": {en:"Built for young professionals and young families", "zh-hant":"為青年專業人士與青年家庭而建", "zh-hans":"为青年专业人士与青年家庭而建"},
-    "next.sub": {en:"Most of our young adults are Chinese professionals who recently moved from China, Taiwan, and across Asia for Silicon Valley careers — alongside American-born Chinese young professionals who grew up here. Two tracks, one church family.",
-      "zh-hant":"我們大多數的青年會友，是最近從中國、台灣及亞洲各地為矽谷工作機會而來的華人專業人士——同時也有在美國成長的美籍華裔青年專業人士。兩條路徑，同屬一個教會家庭。",
-      "zh-hans":"我们大多数的青年会友，是最近从中国、台湾及亚洲各地为硅谷工作机会而来的华人专业人士——同时也有在美国成长的美籍华裔青年专业人士。两条路径，同属一个教会家庭。"},
+    "next.title": {en:"Find community as a young professional or young family", "zh-hant":"為青年專業人士與青年家庭找到團契", "zh-hans":"为青年专业人士与青年家庭找到团契"},
+    "next.sub": {en:"Many of our young adults are Chinese professionals who recently moved from China, Taiwan, and across Asia for Silicon Valley careers — alongside American-born Chinese young professionals who grew up here. Two language paths, one church family.",
+      "zh-hant":"我們不少的青年會友，是最近從中國、台灣及亞洲各地為矽谷工作機會而來的華人專業人士——同時也有在美國成長的美籍華裔青年專業人士。兩條語言路徑，同屬一個教會家庭。",
+      "zh-hans":"我们不少的青年会友，是最近从中国、台湾及亚洲各地为硅谷工作机会而来的华人专业人士——同时也有在美国成长的美籍华裔青年专业人士。两条语言路径，同属一个教会家庭。"},
     "next.badge1": {en:"🏙️ New to Silicon Valley", "zh-hant":"🏙️ 初抵矽谷", "zh-hans":"🏙️ 初抵硅谷"},
     "next.badge2": {en:"🎓 Young Professionals", "zh-hant":"🎓 青年專業人士", "zh-hans":"🎓 青年专业人士"},
     "next.badge3": {en:"🏡 Small Groups", "zh-hant":"🏡 小組團契", "zh-hans":"🏡 小组团契"},
     "next.spot.h": {en:"Two languages, one young-professional community", "zh-hant":"兩種語言，同一個青年專業人士社群", "zh-hans":"两种语言，同一个青年专业人士社群"},
-    "next.spot.p": {en:"Whether you just landed from Shanghai, Taipei, or Shenzhen for your first tech job, or you grew up in an English-speaking church, there's a track built for you — not a program you have to adapt to.",
-      "zh-hant":"無論你是剛從上海、台北或深圳來到這裡展開第一份科技工作，還是在說英語的教會中成長——這裡都有一條為你量身打造的路徑，而不需要你勉強適應。",
-      "zh-hans":"无论你是刚从上海、台北或深圳来到这里展开第一份科技工作，还是在说英语的教会中成长——这里都有一条为你量身打造的路径，而不需要你勉强适应。"},
-    "next.spot.cta": {en:"Find Your Track →", "zh-hant":"找到你的路徑 →", "zh-hans":"找到你的路径 →"},
+    "next.spot.p": {en:"Whether you just landed from Shanghai, Taipei, or Shenzhen for your first tech job, or you grew up in an English-speaking church, here are two starting points — pick the one where you'd feel most at home.",
+      "zh-hant":"無論你是剛從上海、台北或深圳來到這裡展開第一份科技工作，還是在說英語的教會中成長——這裡有兩個起點，選一個你覺得最自在的開始。",
+      "zh-hans":"无论你是刚从上海、台北或深圳来到这里展开第一份科技工作，还是在说英语的教会中成长——这里有两个起点，选一个你觉得最自在的开始。"},
+    "next.spot.cta": {en:"See Both Paths ↓", "zh-hant":"查看兩條路徑 ↓", "zh-hans":"查看两条路径 ↓"},
+    "next.sample.note": {en:"Sample stories for this demo — to be replaced with real, permissioned testimonies before launch.",
+      "zh-hant":"以上為本展示網站的示意故事，正式上線前將替換為真實且經本人同意的見證。",
+      "zh-hans":"以上为本展示网站的示意故事，正式上线前将替换为真实且经本人同意的见证。"},
     "next.path1.h": {en:"Mandarin Young Professionals Fellowship", "zh-hant":"國語青年專業團契", "zh-hans":"国语青年专业团契"},
     "next.path1.p": {en:"For recent arrivals from China, Taiwan, and across Asia working in tech, biotech, and grad school — career, dating, visa stress, and faith questions, discussed in Mandarin with people who've lived it.",
       "zh-hant":"為最近從中國、台灣及亞洲各地來到矽谷從事科技、生物科技工作或就讀研究所的新朋友而設——用國語，與曾親身經歷的人一起討論職涯、感情、簽證壓力與信仰問題。",
@@ -1322,9 +1328,9 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
       "zh-hant":"為美籍華裔青年專業人士而設——無論是在這間教會長大，或是第一次踏進教會大門——以英語聚集敬拜、聽道並參與小組。",
       "zh-hans":"为美籍华裔青年专业人士而设——无论是在这间教会长大，或是第一次踏进教会大门——以英语聚集敬拜、听道并参与小组。"},
     "next.path2.link": {en:"Sundays 11:00 · Abide SJ →", "zh-hant":"主日11:00 · Abide SJ →", "zh-hans":"主日11:00 · Abide SJ →"},
-    "next.t1.q": {en:"I hadn't been to church since high school. Someone from Abide SJ just kept inviting me to dinner. Six months later I was leading worship.",
-      "zh-hant":"「高中以後我就沒再去過教會。Abide SJ的一位朋友就只是不斷邀請我吃飯。六個月後，我竟然在帶敬拜。」",
-      "zh-hans":"「高中以后我就没再去过教会。Abide SJ的一位朋友就只是不断邀请我吃饭。六个月后，我竟然在带敬拜。」"},
+    "next.t1.q": {en:"I hadn't been to church since high school and had a lot of questions. Someone from Abide SJ just kept inviting me to dinner — no pressure, no pitch. That's how I found a few real friends here.",
+      "zh-hant":"「高中以後我就沒再去過教會，心裡有很多疑問。Abide SJ的一位朋友就只是不斷邀請我吃飯——沒有壓力，也不傳教。我就是這樣在這裡交到了幾個真心的朋友。」",
+      "zh-hans":"「高中以后我就没再去过教会，心里有很多疑问。Abide SJ的一位朋友就只是不断邀请我吃饭——没有压力，也不传教。我就是这样在这里交到了几个真心的朋友。」"},
     "next.t1.name": {en:"— Kevin L.", "zh-hant":"— Kevin L.", "zh-hans":"— Kevin L."},
     "next.t1.role": {en:"Software engineer, American-born, Abide SJ", "zh-hant":"軟體工程師，美籍華裔，Abide SJ", "zh-hans":"软件工程师，美籍华裔，Abide SJ"},
     "next.t2.q": {en:"Our daughter started in the nursery at six weeks old. Now she's in AWANA and asks to go to church — we didn't have to convince her.",
@@ -1351,7 +1357,7 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
     "watch.c.p": {en:"This week's message from the Cantonese congregation.", "zh-hant":"本週粵語部的信息錄音。", "zh-hans":"本周粤语部的信息录音。"},
     "watch.link": {en:"▶ Watch / Listen →", "zh-hant":"▶ 觀看／收聽 →", "zh-hans":"▶ 观看／收听 →"},
 
-    "chat.fab": {en:"Ask CCIC", "zh-hant":"詢問 CCIC", "zh-hans":"询问 CCIC"},
+    "chat.fab": {en:"Ask CCIC (Demo)", "zh-hant":"詢問 CCIC（示範）", "zh-hans":"询问 CCIC（示范）"},
     "chat.title": {en:"Ask CCIC", "zh-hant":"詢問 CCIC", "zh-hans":"询问 CCIC"},
     "chat.sub": {en:"Visitor assistant — simulated for this demo", "zh-hant":"訪客助理 — 本演示為模擬功能", "zh-hans":"访客助理 — 本演示为模拟功能"},
     "chat.disclaimer": {en:"Demo only — answers are generated locally from this page's own content, not a live connection.",
@@ -1392,7 +1398,7 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
       "zh-hant":"✓ 僅供預覽 — 正式版中，英語部辦公室將收到此訊息並於兩個工作日內回覆。",
       "zh-hans":"✓ 仅供预览 — 正式版中，英语部办公室将收到此消息并于两个工作日内回复。"},
 
-    "agent.fab": {en:"Staff: AI Content Agent", "zh-hant":"同工專用：AI內容助理", "zh-hans":"同工专用：AI内容助理"},
+    "agent.fab": {en:"Staff: AI Content Agent (Demo)", "zh-hant":"同工專用：AI內容助理（示範）", "zh-hans":"同工专用：AI内容助理（示范）"},
     "agent.title": {en:"AI Content Agent", "zh-hant":"AI 內容助理", "zh-hans":"AI 内容助理"},
     "agent.sub": {en:"Staff demo — every change waits for elder approval", "zh-hant":"同工演示 — 所有變更皆需長老核准", "zh-hans":"同工演示 — 所有变更皆需长老核准"},
     "agent.disclaimer": {en:"Simulated agent for this demo — matches a few example commands below and edits this page live. No real backend or database is connected.",
@@ -1664,8 +1670,10 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
 
   // count-up stats
   var counted = false;
+  var prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   function runCounters(){
     if(counted) return; counted = true;
+    if(prefersReducedMotion) return;
     document.querySelectorAll("[data-count]").forEach(function(el){
       var target = parseInt(el.getAttribute("data-count"), 10);
       var start = performance.now(), dur = 1100;
