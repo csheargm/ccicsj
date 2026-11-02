@@ -245,6 +245,14 @@ nav.main a.active{color:var(--ink); font-weight:800}
 .spotlight h3{font-size:clamp(1.6rem,3vw,2.1rem); margin:0; color:#fff; font-family:var(--font-display)}
 .spotlight p{color:rgba(255,255,255,.88); margin:0; max-width:56ch; font-size:1.05rem}
 
+/* ---------- next gen quote cards ---------- */
+.quote-card{position:relative}
+.quote-mark{font-family:var(--font-display); font-size:3rem; color:var(--gold-soft); line-height:1; opacity:.7}
+.quote-card p{font-size:1.05rem; font-style:italic; color:var(--ink); margin:0}
+.quote-by{display:flex; flex-direction:column; gap:2px; border-top:1px solid var(--line); padding-top:14px; margin-top:auto}
+.quote-by b{font-size:.98rem}
+.quote-by span{font-size:.86rem; color:var(--muted)}
+
 .daytime-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px}
 .daytime-list li{display:flex; align-items:center; gap:18px; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:16px 20px}
 .dt-pill{flex:none; background:var(--paper); border:1px solid var(--line); border-radius:999px; padding:8px 16px; font-family:var(--font-display); font-weight:700; color:var(--wine); font-size:.95rem; white-space:nowrap}
@@ -494,6 +502,7 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
   <div id="mobileNav">
     <a href="#about" data-i18n="nav.about">About</a>
     <a href="#community" data-i18n="nav.community">Community</a>
+    <a href="#nextgen" data-i18n="nav.nextgen">Next Gen</a>
     <a href="#beliefs" data-i18n="nav.beliefs">Beliefs</a>
     <a href="#ministries" data-i18n="nav.ministries">Ministries</a>
     <a href="#watch" data-i18n="nav.watch">Watch</a>
@@ -586,7 +595,7 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
         <div class="belief-card reveal">
           <span class="icon-badge"><svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M4 19v-2a4 4 0 014-4h0a4 4 0 014 4v2M14 19v-1a3.5 3.5 0 013.5-3.5h0A3.5 3.5 0 0121 18v1" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="7" r="3" stroke="currentColor" stroke-width="1.4"/><circle cx="17" cy="9" r="2.4" stroke="currentColor" stroke-width="1.4"/></svg></span>
           <h3 data-i18n="comm.c1.h">Newcomer Welcome</h3>
-          <p data-i18n="comm.c1.p">From visiting scholars to new Silicon Valley hires, we help newcomers find community, English conversation partners, and practical help settling in.</p>
+          <p data-i18n="comm.c1.p">From young professionals starting their first Silicon Valley job to older parents and grandparents newly immigrated from China to be near family, we help newcomers of every age find community, language partners, and practical help settling in.</p>
         </div>
         <div class="belief-card reveal">
           <span class="icon-badge"><svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M6 7h3M6 12h3M6 17h3M15 7h3M15 12h3M15 17h3" stroke="currentColor" stroke-width="1.4"/></svg></span>
@@ -600,6 +609,62 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
         </div>
       </div>
       <p class="reveal" style="margin-top:28px; text-align:center; color:var(--muted); font-size:.92rem" data-i18n="comm.footnote">Every month, our Missions &amp; Compassion team shares the gospel at Cupertino Village — one of the Bay Area's most-visited Chinese American shopping centers — because this community is our community.</p>
+    </div>
+  </section>
+
+  <!-- NEXT GENERATION / YOUNG FAMILIES -->
+  <section class="band" id="nextgen" style="position:relative; isolation:isolate; overflow:hidden">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow" data-i18n="next.eyebrow">Next Generation</p>
+        <h2 data-i18n="next.title">Built for young professionals and young families</h2>
+        <p data-i18n="next.sub">Most of our young adults are Chinese professionals who recently moved from China, Taiwan, and across Asia for Silicon Valley careers — alongside American-born Chinese young professionals who grew up here. Two tracks, one church family.</p>
+      </div>
+
+      <div class="spotlight reveal glow-target">
+        <div class="mesh" aria-hidden="true"></div>
+        <div class="spotlight-badges">
+          <span class="spotlight-badge" data-i18n="next.badge1">🏙️ New to Silicon Valley</span>
+          <span class="spotlight-badge" data-i18n="next.badge2">🎓 Young Professionals</span>
+          <span class="spotlight-badge" data-i18n="next.badge3">🏡 Small Groups</span>
+        </div>
+        <h3 data-i18n="next.spot.h">Two languages, one young-professional community</h3>
+        <p data-i18n="next.spot.p">Whether you just landed from Shanghai, Taipei, or Shenzhen for your first tech job, or you grew up in an English-speaking church, there's a track built for you — not a program you have to adapt to.</p>
+        <a href="#visit" class="cta" style="align-self:flex-start" data-i18n="next.spot.cta">Find Your Track →</a>
+      </div>
+
+      <div class="belief-grid" style="grid-template-columns:1fr 1fr; margin-top:28px">
+        <div class="belief-card reveal">
+          <span class="icon-badge"><svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M3 21h18M6 21V9l6-4 6 4v12M10 21v-6h4v6" stroke="currentColor" stroke-width="1.4"/></svg></span>
+          <h3 data-i18n="next.path1.h">Mandarin Young Professionals Fellowship</h3>
+          <p data-i18n="next.path1.p">For recent arrivals from China, Taiwan, and across Asia working in tech, biotech, and grad school — career, dating, visa stress, and faith questions, discussed in Mandarin with people who've lived it.</p>
+          <span class="min-link" data-i18n="next.path1.link">Sundays · Mandarin Congregation →</span>
+        </div>
+        <div class="belief-card reveal">
+          <span class="icon-badge"><svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.4 8.4 0 01-4.3 7.3L12 21l-1-3.2A8.5 8.5 0 1121 11.5Z" stroke="currentColor" stroke-width="1.5"/></svg></span>
+          <h3 data-i18n="next.path2.h">English Ministry — Abide SJ</h3>
+          <p data-i18n="next.path2.p">For American-born Chinese young professionals — whether raised in this church or walking through the doors for the first time — gathering in English for worship, teaching, and small groups.</p>
+          <span class="min-link" data-i18n="next.path2.link">Sundays 11:00 · Abide SJ →</span>
+        </div>
+      </div>
+
+      <div class="belief-grid" style="grid-template-columns:repeat(3,1fr); margin-top:28px">
+        <div class="belief-card quote-card reveal">
+          <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+          <p data-i18n="next.t1.q">I hadn't been to church since high school. Someone from Abide SJ just kept inviting me to dinner. Six months later I was leading worship.</p>
+          <div class="quote-by"><b data-i18n="next.t1.name">— Kevin L.</b><span data-i18n="next.t1.role">Software engineer, American-born, Abide SJ</span></div>
+        </div>
+        <div class="belief-card quote-card reveal">
+          <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+          <p data-i18n="next.t2.q">Our daughter started in the nursery at six weeks old. Now she's in AWANA and asks to go to church — we didn't have to convince her.</p>
+          <div class="quote-by"><b data-i18n="next.t2.name">— Jenny &amp; David C.</b><span data-i18n="next.t2.role">Young family, Mandarin &amp; English Ministries</span></div>
+        </div>
+        <div class="belief-card quote-card reveal">
+          <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+          <p data-i18n="next.t3.q">I moved from Taipei for a product manager role and knew no one in the Bay Area. The Mandarin Young Professionals Fellowship became the first place here that felt like family.</p>
+          <div class="quote-by"><b data-i18n="next.t3.name">— Michelle T.</b><span data-i18n="next.t3.role">Product manager, moved from Taipei in 2023</span></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -906,6 +971,7 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
         <ul>
           <li><a href="#about" data-i18n="nav.about">About</a></li>
           <li><a href="#community" data-i18n="nav.community">Community</a></li>
+          <li><a href="#nextgen" data-i18n="nav.nextgen">Next Gen</a></li>
           <li><a href="#beliefs" data-i18n="nav.beliefs">Beliefs</a></li>
           <li><a href="#ministries" data-i18n="nav.ministries">Ministries</a></li>
           <li><a href="#watch" data-i18n="nav.watch">Watch</a></li>
@@ -1201,9 +1267,9 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
       "zh-hant":"CCIC始於1969年，由一群離鄉背井的國際研究生所建立——而這份歡迎矽谷華人社區的心志，從未改變。",
       "zh-hans":"CCIC始于1969年，由一群离乡背井的国际研究生所建立——而这份欢迎硅谷华人社区的心志，从未改变。"},
     "comm.c1.h": {en:"Newcomer Welcome", "zh-hant":"迎新接待", "zh-hans":"迎新接待"},
-    "comm.c1.p": {en:"From visiting scholars to new Silicon Valley hires, we help newcomers find community, English conversation partners, and practical help settling in.",
-      "zh-hant":"從訪問學者到矽谷新移民，我們協助新朋友找到團契、英語夥伴，並提供生活安頓上的實際幫助。",
-      "zh-hans":"从访问学者到硅谷新移民，我们协助新朋友找到团契、英语伙伴，并提供生活安顿上的实际帮助。"},
+    "comm.c1.p": {en:"From young professionals starting their first Silicon Valley job to older parents and grandparents newly immigrated from China to be near family, we help newcomers of every age find community, language partners, and practical help settling in.",
+      "zh-hant":"從剛展開矽谷第一份工作的青年專業人士，到為與家人團聚而從中國新移民來的年長父母與長輩，我們協助各年齡層的新朋友找到團契、語言夥伴，並提供生活安頓上的實際幫助。",
+      "zh-hans":"从刚展开硅谷第一份工作的青年专业人士，到为与家人团聚而从中国新移民来的年长父母与长辈，我们协助各年龄层的新朋友找到团契、语言伙伴，并提供生活安顿上的实际帮助。"},
     "comm.c2.h": {en:"Multigenerational Family", "zh-hant":"跨代同行", "zh-hans":"跨代同行"},
     "comm.c2.p": {en:"Mandarin-speaking parents, Cantonese-speaking grandparents, and English-speaking children all worship under one roof — with ministries that bridge every generation.",
       "zh-hant":"說國語的父母、說粵語的長輩，以及說英語的孩子，同在一個屋頂下敬拜——各項事工致力連結每一個世代。",
@@ -1215,6 +1281,46 @@ footer{padding-block:48px; background:var(--ink); color:var(--muted-ink)}
     "comm.footnote": {en:"Every month, our Missions & Compassion team shares the gospel at Cupertino Village — one of the Bay Area's most-visited Chinese American shopping centers — because this community is our community.",
       "zh-hant":"每個月，我們的宣教關懷團隊都在中信廣場（灣區華人最常造訪的商場之一）傳揚福音——因為這個社區就是我們的社區。",
       "zh-hans":"每个月，我们的宣教关怀团队都在中信广场（湾区华人最常造访的商场之一）传扬福音——因为这个社区就是我们的社区。"},
+
+    "nav.nextgen": {en:"Next Gen", "zh-hant":"新生代", "zh-hans":"新生代"},
+    "next.eyebrow": {en:"Next Generation", "zh-hant":"新生代", "zh-hans":"新生代"},
+    "next.title": {en:"Built for young professionals and young families", "zh-hant":"為青年專業人士與青年家庭而建", "zh-hans":"为青年专业人士与青年家庭而建"},
+    "next.sub": {en:"Most of our young adults are Chinese professionals who recently moved from China, Taiwan, and across Asia for Silicon Valley careers — alongside American-born Chinese young professionals who grew up here. Two tracks, one church family.",
+      "zh-hant":"我們大多數的青年會友，是最近從中國、台灣及亞洲各地為矽谷工作機會而來的華人專業人士——同時也有在美國成長的美籍華裔青年專業人士。兩條路徑，同屬一個教會家庭。",
+      "zh-hans":"我们大多数的青年会友，是最近从中国、台湾及亚洲各地为硅谷工作机会而来的华人专业人士——同时也有在美国成长的美籍华裔青年专业人士。两条路径，同属一个教会家庭。"},
+    "next.badge1": {en:"🏙️ New to Silicon Valley", "zh-hant":"🏙️ 初抵矽谷", "zh-hans":"🏙️ 初抵硅谷"},
+    "next.badge2": {en:"🎓 Young Professionals", "zh-hant":"🎓 青年專業人士", "zh-hans":"🎓 青年专业人士"},
+    "next.badge3": {en:"🏡 Small Groups", "zh-hant":"🏡 小組團契", "zh-hans":"🏡 小组团契"},
+    "next.spot.h": {en:"Two languages, one young-professional community", "zh-hant":"兩種語言，同一個青年專業人士社群", "zh-hans":"两种语言，同一个青年专业人士社群"},
+    "next.spot.p": {en:"Whether you just landed from Shanghai, Taipei, or Shenzhen for your first tech job, or you grew up in an English-speaking church, there's a track built for you — not a program you have to adapt to.",
+      "zh-hant":"無論你是剛從上海、台北或深圳來到這裡展開第一份科技工作，還是在說英語的教會中成長——這裡都有一條為你量身打造的路徑，而不需要你勉強適應。",
+      "zh-hans":"无论你是刚从上海、台北或深圳来到这里展开第一份科技工作，还是在说英语的教会中成长——这里都有一条为你量身打造的路径，而不需要你勉强适应。"},
+    "next.spot.cta": {en:"Find Your Track →", "zh-hant":"找到你的路徑 →", "zh-hans":"找到你的路径 →"},
+    "next.path1.h": {en:"Mandarin Young Professionals Fellowship", "zh-hant":"國語青年專業團契", "zh-hans":"国语青年专业团契"},
+    "next.path1.p": {en:"For recent arrivals from China, Taiwan, and across Asia working in tech, biotech, and grad school — career, dating, visa stress, and faith questions, discussed in Mandarin with people who've lived it.",
+      "zh-hant":"為最近從中國、台灣及亞洲各地來到矽谷從事科技、生物科技工作或就讀研究所的新朋友而設——用國語，與曾親身經歷的人一起討論職涯、感情、簽證壓力與信仰問題。",
+      "zh-hans":"为最近从中国、台湾及亚洲各地来到硅谷从事科技、生物科技工作或就读研究所的新朋友而设——用国语，与曾亲身经历的人一起讨论职涯、感情、签证压力与信仰问题。"},
+    "next.path1.link": {en:"Sundays · Mandarin Congregation →", "zh-hant":"主日 · 國語堂會 →", "zh-hans":"主日 · 国语堂会 →"},
+    "next.path2.h": {en:"English Ministry — Abide SJ", "zh-hant":"英語事工 — Abide SJ", "zh-hans":"英语事工 — Abide SJ"},
+    "next.path2.p": {en:"For American-born Chinese young professionals — whether raised in this church or walking through the doors for the first time — gathering in English for worship, teaching, and small groups.",
+      "zh-hant":"為美籍華裔青年專業人士而設——無論是在這間教會長大，或是第一次踏進教會大門——以英語聚集敬拜、聽道並參與小組。",
+      "zh-hans":"为美籍华裔青年专业人士而设——无论是在这间教会长大，或是第一次踏进教会大门——以英语聚集敬拜、听道并参与小组。"},
+    "next.path2.link": {en:"Sundays 11:00 · Abide SJ →", "zh-hant":"主日11:00 · Abide SJ →", "zh-hans":"主日11:00 · Abide SJ →"},
+    "next.t1.q": {en:"I hadn't been to church since high school. Someone from Abide SJ just kept inviting me to dinner. Six months later I was leading worship.",
+      "zh-hant":"「高中以後我就沒再去過教會。Abide SJ的一位朋友就只是不斷邀請我吃飯。六個月後，我竟然在帶敬拜。」",
+      "zh-hans":"「高中以后我就没再去过教会。Abide SJ的一位朋友就只是不断邀请我吃饭。六个月后，我竟然在带敬拜。」"},
+    "next.t1.name": {en:"— Kevin L.", "zh-hant":"— Kevin L.", "zh-hans":"— Kevin L."},
+    "next.t1.role": {en:"Software engineer, American-born, Abide SJ", "zh-hant":"軟體工程師，美籍華裔，Abide SJ", "zh-hans":"软件工程师，美籍华裔，Abide SJ"},
+    "next.t2.q": {en:"Our daughter started in the nursery at six weeks old. Now she's in AWANA and asks to go to church — we didn't have to convince her.",
+      "zh-hant":"「我們的女兒六週大就開始上嬰兒室。現在她在AWANA，還會主動要求去教會——完全不用我們勸。」",
+      "zh-hans":"「我们的女儿六周大就开始上婴儿室。现在她在AWANA，还会主动要求去教会——完全不用我们劝。」"},
+    "next.t2.name": {en:"— Jenny & David C.", "zh-hant":"— Jenny & David C.", "zh-hans":"— Jenny & David C."},
+    "next.t2.role": {en:"Young family, Mandarin & English Ministries", "zh-hant":"青年家庭，國語部與英語部", "zh-hans":"青年家庭，国语部与英语部"},
+    "next.t3.q": {en:"I moved from Taipei for a product manager role and knew no one in the Bay Area. The Mandarin Young Professionals Fellowship became the first place here that felt like family.",
+      "zh-hant":"「我從台北搬來擔任產品經理，在灣區一個人都不認識。國語青年專業團契成了我在這裡第一個感覺像家的地方。」",
+      "zh-hans":"「我从台北搬来担任产品经理，在湾区一个人都不认识。国语青年专业团契成了我在这里第一个感觉像家的地方。」"},
+    "next.t3.name": {en:"— Michelle T.", "zh-hant":"— Michelle T.", "zh-hans":"— Michelle T."},
+    "next.t3.role": {en:"Product manager, moved from Taipei in 2023", "zh-hant":"產品經理，2023年自台北遷來", "zh-hans":"产品经理，2023年自台北迁来"},
 
     "watch.eyebrow": {en:"Watch & Listen", "zh-hant":"觀看與收聽", "zh-hans":"观看与收听"},
     "watch.title": {en:"Catch up on this week's message", "zh-hant":"回顧本週信息", "zh-hans":"回顾本周信息"},
