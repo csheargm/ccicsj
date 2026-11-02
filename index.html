@@ -85,6 +85,22 @@ header.site{
   border-bottom:1px solid var(--line);
 }
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:41;background:var(--paper)}
+/* ---------- quick-jump bar (phones only) ---------- */
+.quick-nav{
+  display:none; position:sticky; top:var(--header-h,64px); z-index:39;
+  background:color-mix(in srgb, var(--paper) 96%, transparent); backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line); overflow-x:auto; white-space:nowrap;
+  padding:10px 14px; -webkit-overflow-scrolling:touch; scrollbar-width:none;
+}
+.quick-nav::-webkit-scrollbar{display:none}
+.quick-nav a{
+  display:inline-block; margin-right:8px; padding:7px 15px; border:1px solid var(--line);
+  border-radius:999px; font-size:.84rem; font-weight:700; color:var(--ink); text-decoration:none;
+  background:var(--panel);
+}
+.quick-nav a:hover,.quick-nav a:active{border-color:var(--wine); color:var(--wine)}
+@media (max-width:1060px){.quick-nav{display:block}}
+[id]{scroll-margin-top:calc(var(--header-h,64px) + 54px)}
 .nav-row{display:flex; align-items:center; gap:18px; padding-block:14px; justify-content:space-between}
 .brand{display:flex; align-items:center; gap:10px; min-width:0; text-decoration:none}
 .brand-logo{height:34px; width:auto; display:block; max-width:min(44vw,320px); object-fit:contain}
@@ -497,6 +513,14 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
   </div>
 </header>
 
+<nav class="quick-nav" id="quickNav" aria-label="Quick jump">
+  <a href="#visit" data-i18n="quicknav.visit">Visit</a>
+  <a href="#nextgen-paths" data-i18n="quicknav.tracks">Tracks</a>
+  <a href="#alpha" data-i18n="quicknav.alpha">Alpha</a>
+  <a href="#watch" data-i18n="quicknav.watch">Watch</a>
+  <a href="#give" data-i18n="quicknav.give">Give</a>
+</nav>
+
 <main>
   <!-- HERO -->
   <section class="band hero">
@@ -806,7 +830,7 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
             <a class="min-link" href="#missions" data-i18n="min.m6.link" style="text-decoration:none">See this year's calendar →</a>
           </div>
         </div>
-        <div class="min-card no-photo reveal">
+        <div class="min-card no-photo reveal" id="alpha">
           <div class="min-body">
             <span class="icon-badge"><svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.6 6.6L21 11l-6.4 2.4L12 20l-2.6-6.6L3 11l6.4-2.4Z" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="11" r="2" stroke="currentColor" stroke-width="1.2"/></svg></span>
             <span class="min-tag" data-i18n="min.m7.tag">啟發課程 · Alpha Course</span>
@@ -1068,6 +1092,11 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
     "nav.missions": {en:"Missions", "zh-hant":"宣教關懷", "zh-hans":"宣教关怀"},
     "nav.give": {en:"Give", "zh-hant":"奉獻", "zh-hans":"奉献"},
     "nav.visit": {en:"Visit", "zh-hant":"主日資訊", "zh-hans":"主日信息"},
+    "quicknav.visit": {en:"Visit", "zh-hant":"主日資訊", "zh-hans":"主日信息"},
+    "quicknav.tracks": {en:"Tracks", "zh-hant":"青年路徑", "zh-hans":"青年路径"},
+    "quicknav.alpha": {en:"Alpha", "zh-hant":"啟發課程", "zh-hans":"启发课程"},
+    "quicknav.watch": {en:"Watch", "zh-hant":"講道", "zh-hans":"讲道"},
+    "quicknav.give": {en:"Give", "zh-hant":"奉獻", "zh-hans":"奉献"},
     "nav.imnew": {en:"I'm New", "zh-hant":"我是新朋友", "zh-hans":"我是新朋友"},
     "nav.visitcta": {en:"Plan Your Visit", "zh-hant":"安排主日來訪", "zh-hans":"安排主日来访"},
 
@@ -1484,6 +1513,16 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
   mobileNav.querySelectorAll("a").forEach(function(a){
     a.addEventListener("click", function(){ mobileNav.classList.remove("open"); });
   });
+
+  // keep the quick-nav bar's sticky offset in sync with the header's real height
+  (function(){
+    var headerEl = document.querySelector("header.site");
+    if(!headerEl) return;
+    function setH(){ document.documentElement.style.setProperty("--header-h", headerEl.offsetHeight + "px"); }
+    setH();
+    window.addEventListener("resize", setH);
+    window.addEventListener("load", setH);
+  })();
 
   // scroll reveal
   var io = new IntersectionObserver(function(entries){
