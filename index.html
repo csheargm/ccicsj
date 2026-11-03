@@ -368,14 +368,19 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
 .hero-stats div span{color:rgba(251,245,234,.72)}
 .hero-stats div b{background:linear-gradient(100deg,var(--gold-soft),#fff2d8); -webkit-background-clip:text; background-clip:text; color:transparent}
 
+/* Gradient text paints only inside the element's box; with a tight line-height the
+   last line's descenders (g, y, j) fall below it and turn invisible. The bottom
+   padding extends the painted box under them (background covers the padding box). */
 .grad-text{
   background:linear-gradient(100deg, var(--wine), var(--gold) 55%, var(--gold-soft));
   -webkit-background-clip:text; background-clip:text; color:transparent;
+  padding-bottom:.12em;
 }
 .hero-grad-text{
   background:linear-gradient(100deg, #ffffff 0%, #fff6e4 38%, var(--gold-soft) 72%, var(--gold) 100%);
   -webkit-background-clip:text; background-clip:text; color:transparent;
   background-size:200% 100%; animation:titleshift 9s ease-in-out infinite;
+  padding-bottom:.12em;
 }
 @keyframes titleshift{0%,100%{background-position:0% 0%}50%{background-position:100% 0%}}
 @media (prefers-reduced-motion:reduce){.hero-grad-text{animation:none}}
