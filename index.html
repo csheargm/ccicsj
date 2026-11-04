@@ -348,6 +348,23 @@ nav.main a.active{color:var(--ink); font-weight:800}
 .daytime-list b{display:block; font-size:1.05rem}
 .daytime-list span{font-size:.92rem; color:var(--muted)}
 
+/* ---------- latest news (expandable) ---------- */
+.news-list{display:flex; flex-direction:column; gap:14px}
+.news-item{background:var(--panel); border:1px solid var(--line); border-radius:14px; overflow:hidden}
+.news-item summary{list-style:none; cursor:pointer; display:flex; align-items:center; gap:18px; padding:16px 20px}
+.news-item summary::-webkit-details-marker{display:none}
+.news-item summary > div{flex:1; min-width:0}
+.news-item summary b{display:block; font-size:1.05rem}
+.news-item summary span{font-size:.92rem; color:var(--muted)}
+.news-chev{flex:none; width:18px; height:18px; color:var(--muted); transition:transform .25s ease}
+.news-item[open] .news-chev{transform:rotate(180deg)}
+.news-detail{display:flex; gap:18px; flex-wrap:wrap; align-items:flex-start; padding:0 20px 20px; border-top:1px solid var(--line); padding-top:16px; margin-top:0}
+.news-detail img{width:160px; border-radius:10px; flex:none; border:1px solid var(--line)}
+.news-detail p{margin:0 0 10px; color:var(--muted); font-size:.95rem; line-height:1.55}
+.news-detail > div{flex:1; min-width:200px}
+.news-link{display:inline-block; font-weight:700; color:var(--wine); text-decoration:underline; margin-top:2px}
+@media (max-width:560px){.news-detail img{width:100%; max-width:220px} .news-item summary{align-items:flex-start}}
+
 .cal-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px}
 .cal-card{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:22px}
 .cal-card .cal-date{font-family:var(--font-display); color:var(--wine); font-weight:700; font-size:1.1rem; margin-bottom:8px}
@@ -656,13 +673,55 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
         <p class="eyebrow" data-i18n="news.eyebrow">Latest News</p>
         <h2 data-i18n="news.title">What's happening at CCIC right now</h2>
       </div>
-      <ul class="daytime-list reveal">
-        <li><span class="dt-pill" data-i18n="news.n1.t">Nov 27–29</span><div><b data-i18n="news.n1.h">2026 Winter Retreat — "Living Out Our Mission, Being Christ's Disciples"</b><span data-i18n="news.n1.p">Speaker: Rev. Chen Shih-chin · Crowne Plaza Hotel, Foster City</span></div></li>
-        <li><span class="dt-pill" data-i18n="news.n2.t">Fridays, through Nov 20</span><div><b data-i18n="news.n2.h">Mandarin Alpha Course</b><span data-i18n="news.n2.p">Friday evenings · 6:30 PM dinner, 7:30 PM session</span></div></li>
-        <li><span class="dt-pill" data-i18n="news.n3.t">Wednesdays · 8:00–9:30 PM</span><div><b data-i18n="news.n3.h">Prayer Meeting</b><span data-i18n="news.n3.p">Room 321 — all are welcome to pray together.</span></div></li>
-        <li><span class="dt-pill" data-i18n="news.n4.t">Starts Dec 30</span><div><b data-i18n="news.n4.h">New Daily Bible Reading Plan</b><span data-i18n="news.n4.p">Sign up to join; pick up a printed schedule at the 1st-floor bulletin board.</span></div></li>
-        <li><span class="dt-pill" data-i18n="news.n5.t">Sep 6 – Nov 22</span><div><b data-i18n="news.n5.h">Fall Adult Sunday School</b><span data-i18n="news.n5.p">Joy of Bible Reading (8) · Romans · Discipleship Training (4): Receiving God's Word · Foundations of the Faith</span></div></li>
-      </ul>
+      <div class="news-list reveal">
+        <details class="news-item">
+          <summary><span class="dt-pill" data-i18n="news.n1.t">Nov 27–29</span><div><b data-i18n="news.n1.h">2026 Winter Retreat — "Living Out Our Mission, Being Christ's Disciples"</b><span data-i18n="news.n1.p">Speaker: Rev. Chen Shih-chin · Crowne Plaza Hotel, Foster City</span></div><svg class="news-chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+          <div class="news-detail">
+            <img src="images/winter-retreat-2026.webp" alt="" loading="lazy">
+            <div>
+              <p data-i18n="news.n1.detail">Full retreat flyer with schedule and registration details, from the church's Mandarin congregation page.</p>
+              <a class="news-link" href="https://ccic-sj.org/mandarin/about" target="_blank" rel="noopener" data-i18n="news.viewsource">View on the church website →</a>
+            </div>
+          </div>
+        </details>
+        <details class="news-item">
+          <summary><span class="dt-pill" data-i18n="news.n2.t">Fridays, through Nov 20</span><div><b data-i18n="news.n2.h">Mandarin Alpha Course</b><span data-i18n="news.n2.p">Friday evenings · 6:30 PM dinner, 7:30 PM session</span></div><svg class="news-chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+          <div class="news-detail">
+            <div>
+              <p data-i18n="news.n2.detail">A relaxed, no-pressure course over a meal where newcomers and spiritual seekers can ask honest questions about the Christian faith — offered in Mandarin and English.</p>
+              <a class="news-link" href="https://ccic-sj.org/mandarin/about" target="_blank" rel="noopener" data-i18n="news.viewsource">View on the church website →</a>
+            </div>
+          </div>
+        </details>
+        <details class="news-item">
+          <summary><span class="dt-pill" data-i18n="news.n3.t">Wednesdays · 8:00–9:30 PM</span><div><b data-i18n="news.n3.h">Prayer Meeting</b><span data-i18n="news.n3.p">Room 321 — all are welcome to pray together.</span></div><svg class="news-chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+          <div class="news-detail">
+            <div>
+              <p data-i18n="news.n3.detail">The church has resumed in-person Sunday worship, Sunday school, and weekday fellowship Bible studies — come in person if your health allows.</p>
+              <a class="news-link" href="https://ccic-sj.org/mandarin/about" target="_blank" rel="noopener" data-i18n="news.viewsource">View on the church website →</a>
+            </div>
+          </div>
+        </details>
+        <details class="news-item">
+          <summary><span class="dt-pill" data-i18n="news.n4.t">Starts Dec 30</span><div><b data-i18n="news.n4.h">New Daily Bible Reading Plan</b><span data-i18n="news.n4.p">Sign up to join; pick up a printed schedule at the 1st-floor bulletin board.</span></div><svg class="news-chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+          <div class="news-detail">
+            <div>
+              <p data-i18n="news.n4.detail">A new reading cycle begins Dec 30 — pick up a printed schedule at the 1st-floor bulletin board, or follow along online.</p>
+              <a class="news-link" href="https://sowernseed.net/register/" target="_blank" rel="noopener" data-i18n="news.n4.link1">Register for the reading plan →</a><br>
+              <a class="news-link" href="https://sowernseed.net/" target="_blank" rel="noopener" data-i18n="news.n4.link2">View the full plan &amp; progress →</a>
+            </div>
+          </div>
+        </details>
+        <details class="news-item">
+          <summary><span class="dt-pill" data-i18n="news.n5.t">Sep 6 – Nov 22</span><div><b data-i18n="news.n5.h">Fall Adult Sunday School</b><span data-i18n="news.n5.p">Joy of Bible Reading (8) · Romans · Discipleship Training (4): Receiving God's Word · Foundations of the Faith</span></div><svg class="news-chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+          <div class="news-detail">
+            <div>
+              <p data-i18n="news.n5.detail">Four course tracks meet in parallel each week. Sign up to receive class notifications and course descriptions.</p>
+              <a class="news-link" href="https://docs.google.com/forms/d/e/1FAIpQLScNoV3NCJysuu-HmgEcfsGvugfzYzOU0aVL8DYNdXazy_C5Xw/viewform?c=0&amp;flr=0&amp;vc=0&amp;w=1" target="_blank" rel="noopener" data-i18n="news.n5.link">Sign up for Sunday school →</a>
+            </div>
+          </div>
+        </details>
+      </div>
       <p class="reveal" style="margin-top:20px; text-align:center; color:var(--muted); font-size:.82rem" data-i18n="news.note">Pulled from the church's Mandarin congregation page (ccic-sj.org/mandarin/about) as of Nov 2026, translated for this demo. On the real site this block would be editable by church staff through a simple admin page — no code changes required.</p>
     </div>
   </section>
@@ -1294,6 +1353,15 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
     "news.n5.h": {en:"Fall Adult Sunday School", "zh-hant":"秋季班成人主日學", "zh-hans":"秋季班成人主日学"},
     "news.n5.p": {en:"Joy of Bible Reading (8) · Romans · Discipleship Training (4): Receiving God's Word · Foundations of the Faith", "zh-hant":"讀經樂（八）．羅馬書．門徒訓練（四）：領受神的話．基要真理", "zh-hans":"读经乐（八）．罗马书．门徒训练（四）：领受神的话．基要真理"},
     "news.note": {en:"Pulled from the church's Mandarin congregation page (ccic-sj.org/mandarin/about) as of Nov 2026, translated for this demo. On the real site this block would be editable by church staff through a simple admin page — no code changes required.", "zh-hant":"本區塊內容取自教會國語部網頁（ccic-sj.org/mandarin/about，2026年11月），為本展示站翻譯整理。正式上線後，教會同工將可透過簡易後台直接更新此區塊，無需改動程式碼。", "zh-hans":"本区块内容取自教会国语部网页（ccic-sj.org/mandarin/about，2026年11月），为本演示站翻译整理。正式上线后，教会同工将可通过简易后台直接更新此区块，无需改动程序代码。"},
+    "news.viewsource": {en:"View on the church website →", "zh-hant":"在教會官網查看 →", "zh-hans":"在教会官网查看 →"},
+    "news.n1.detail": {en:"Full retreat flyer with schedule and registration details, from the church's Mandarin congregation page.", "zh-hant":"完整海報含詳細行程與報名資訊，轉載自教會國語部網頁。", "zh-hans":"完整海报含详细行程与报名信息，转载自教会国语部网页。"},
+    "news.n2.detail": {en:"A relaxed, no-pressure course over a meal where newcomers and spiritual seekers can ask honest questions about the Christian faith — offered in Mandarin and English.", "zh-hant":"啟發課程透過一起用餐，以輕鬆、沒有壓力的方式，讓新朋友與慕道朋友可以誠實地提出對基督信仰的疑問——提供國語與英語班次。", "zh-hans":"启发课程透过一起用餐，以轻松、没有压力的方式，让新朋友与慕道朋友可以诚实地提出对基督信仰的疑问——提供国语与英语班次。"},
+    "news.n3.detail": {en:"The church has resumed in-person Sunday worship, Sunday school, and weekday fellowship Bible studies — come in person if your health allows.", "zh-hant":"教會已經恢復主日崇拜、主日學、週五和週六團契查經的實體聚會，如果您身體健康條件許可，鼓勵您到教會聚會。", "zh-hans":"教会已经恢复主日崇拜、主日学、周五和周六团契查经的实体聚会，如果您身体健康条件许可，鼓励您到教会聚会。"},
+    "news.n4.detail": {en:"A new reading cycle begins Dec 30 — pick up a printed schedule at the 1st-floor bulletin board, or follow along online.", "zh-hant":"教會於12月30日開始新一輪的讀經計劃，您可以在教會一樓佈告欄拿取一份每日讀經計劃表，或線上查看進度。", "zh-hans":"教会于12月30日开始新一轮的读经计划，您可以在教会一楼布告栏拿取一份每日读经计划表，或线上查看进度。"},
+    "news.n4.link1": {en:"Register for the reading plan →", "zh-hant":"註冊讀經計劃 →", "zh-hans":"注册读经计划 →"},
+    "news.n4.link2": {en:"View the full plan & progress →", "zh-hant":"查看完整計劃與進度 →", "zh-hans":"查看完整计划与进度 →"},
+    "news.n5.detail": {en:"Four course tracks meet in parallel each week. Sign up to receive class notifications and course descriptions.", "zh-hant":"四門課程同時開課，歡迎弟兄姊妹報名參加，以便收到課程通知、查看課程介紹。", "zh-hans":"四门课程同时开课，欢迎弟兄姊妹报名参加，以便收到课程通知、查看课程介绍。"},
+    "news.n5.link": {en:"Sign up for Sunday school →", "zh-hant":"報名主日學 →", "zh-hans":"报名主日学 →"},
     "about.eyebrow": {en:"Our Story", "zh-hant":"我們的歷史", "zh-hans":"我们的历史"},
     "about.title": {en:"From a dorm Bible study to a family of churches", "zh-hant":"從一個查經班到一個教會家族", "zh-hans":"从一个查经班到一个教会家族"},
     "about.sub": {en:"A non-denominational church rooted in Scripture and nearly six decades of faithfulness in Silicon Valley.",
