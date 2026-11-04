@@ -578,6 +578,7 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
     </div>
   </div>
   <div id="mobileNav">
+    <a href="#news" data-i18n="nav.news">News</a>
     <a href="#about" data-i18n="nav.about">About</a>
     <a href="#community" data-i18n="nav.community">Community</a>
     <a href="#nextgen" data-i18n="nav.nextgen">Next Gen</a>
@@ -645,6 +646,24 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
           <div class="addr"><a href="https://maps.google.com/?q=1490+Saratoga+Avenue,+San+Jose,+CA+95129" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline">1490 Saratoga Avenue, San Jose, CA 95129</a> · <a href="tel:+14083642242" style="color:inherit; text-decoration:underline">(408) 364-2242</a></div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- LATEST NEWS -->
+  <section class="band" id="news">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow" data-i18n="news.eyebrow">Latest News</p>
+        <h2 data-i18n="news.title">What's happening at CCIC right now</h2>
+      </div>
+      <ul class="daytime-list reveal">
+        <li><span class="dt-pill" data-i18n="news.n1.t">Nov 27–29</span><div><b data-i18n="news.n1.h">2026 Winter Retreat — "Living Out Our Mission, Being Christ's Disciples"</b><span data-i18n="news.n1.p">Speaker: Rev. Chen Shih-chin · Crowne Plaza Hotel, Foster City</span></div></li>
+        <li><span class="dt-pill" data-i18n="news.n2.t">Fridays, through Nov 20</span><div><b data-i18n="news.n2.h">Mandarin Alpha Course</b><span data-i18n="news.n2.p">Friday evenings · 6:30 PM dinner, 7:30 PM session</span></div></li>
+        <li><span class="dt-pill" data-i18n="news.n3.t">Wednesdays · 8:00–9:30 PM</span><div><b data-i18n="news.n3.h">Prayer Meeting</b><span data-i18n="news.n3.p">Room 321 — all are welcome to pray together.</span></div></li>
+        <li><span class="dt-pill" data-i18n="news.n4.t">Starts Dec 30</span><div><b data-i18n="news.n4.h">New Daily Bible Reading Plan</b><span data-i18n="news.n4.p">Sign up to join; pick up a printed schedule at the 1st-floor bulletin board.</span></div></li>
+        <li><span class="dt-pill" data-i18n="news.n5.t">Sep 6 – Nov 22</span><div><b data-i18n="news.n5.h">Fall Adult Sunday School</b><span data-i18n="news.n5.p">Joy of Bible Reading (8) · Romans · Discipleship Training (4): Receiving God's Word · Foundations of the Faith</span></div></li>
+      </ul>
+      <p class="reveal" style="margin-top:20px; text-align:center; color:var(--muted); font-size:.82rem" data-i18n="news.note">Pulled from the church's Mandarin congregation page (ccic-sj.org/mandarin/about) as of Nov 2026, translated for this demo. On the real site this block would be editable by church staff through a simple admin page — no code changes required.</p>
     </div>
   </section>
 
@@ -1224,6 +1243,7 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
   var CONTENT = {
     "brand.name": {en:"CCIC San Jose", "zh-hant":"聖荷西基督徒會堂", "zh-hans":"圣荷西基督徒会堂"},
     "brand.sub": {en:"Chinese Church In Christ", "zh-hant":"CCIC San Jose", "zh-hans":"CCIC San Jose"},
+    "nav.news": {en:"News", "zh-hant":"最新消息", "zh-hans":"最新消息"},
     "nav.about": {en:"About", "zh-hant":"關於我們", "zh-hans":"关于我们"},
     "nav.beliefs": {en:"Beliefs", "zh-hant":"信仰立場", "zh-hans":"信仰立场"},
     "nav.ministries": {en:"Ministries", "zh-hant":"事工", "zh-hans":"事工"},
@@ -1256,6 +1276,24 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
     "hero.card.sanctuaryA": {en:"Sanctuary A", "zh-hant":"A堂", "zh-hans":"A堂"},
     "hero.card.sanctuaryB": {en:"Sanctuary B", "zh-hant":"B堂", "zh-hans":"B堂"},
 
+    "news.eyebrow": {en:"Latest News", "zh-hant":"最新消息", "zh-hans":"最新消息"},
+    "news.title": {en:"What's happening at CCIC right now", "zh-hant":"教會近期動態", "zh-hans":"教会近期动态"},
+    "news.n1.t": {en:"Nov 27–29", "zh-hant":"11月27–29日", "zh-hans":"11月27–29日"},
+    "news.n1.h": {en:"2026 Winter Retreat — “Living Out Our Mission, Being Christ's Disciples”", "zh-hant":"2026冬令會——活出使命，作主門徒", "zh-hans":"2026冬令会——活出使命，作主门徒"},
+    "news.n1.p": {en:"Speaker: Rev. Chen Shih-chin · Crowne Plaza Hotel, Foster City", "zh-hant":"主題講員：陳世欽牧師．Crowne Plaza Hotel, Foster City", "zh-hans":"主题讲员：陈世钦牧师．Crowne Plaza Hotel, Foster City"},
+    "news.n2.t": {en:"Fridays, through Nov 20", "zh-hant":"每週五，至11月20日", "zh-hans":"每周五，至11月20日"},
+    "news.n2.h": {en:"Mandarin Alpha Course", "zh-hant":"國語部啟發課程 Alpha", "zh-hans":"国语部启发课程 Alpha"},
+    "news.n2.p": {en:"Friday evenings · 6:30 PM dinner, 7:30 PM session", "zh-hant":"6:30PM 晚餐；7:30PM 聚會", "zh-hans":"6:30PM 晚餐；7:30PM 聚会"},
+    "news.n3.t": {en:"Wednesdays · 8:00–9:30 PM", "zh-hant":"週三．8:00–9:30PM", "zh-hans":"周三．8:00–9:30PM"},
+    "news.n3.h": {en:"Prayer Meeting", "zh-hant":"禱告會", "zh-hans":"祷告会"},
+    "news.n3.p": {en:"Room 321 — all are welcome to pray together.", "zh-hant":"在321教室，邀請弟兄姊妹一起來禱告！", "zh-hans":"在321教室，邀请弟兄姊妹一起来祷告！"},
+    "news.n4.t": {en:"Starts Dec 30", "zh-hant":"12月30日開始", "zh-hans":"12月30日开始"},
+    "news.n4.h": {en:"New Daily Bible Reading Plan", "zh-hant":"新一輪每日讀經計劃", "zh-hans":"新一轮每日读经计划"},
+    "news.n4.p": {en:"Sign up to join; pick up a printed schedule at the 1st-floor bulletin board.", "zh-hant":"歡迎弟兄姊妹註冊參加，可在教會一樓佈告欄拿取讀經計劃表。", "zh-hans":"欢迎弟兄姊妹注册参加，可在教会一楼布告栏拿取读经计划表。"},
+    "news.n5.t": {en:"Sep 6 – Nov 22", "zh-hant":"9月6日至11月22日", "zh-hans":"9月6日至11月22日"},
+    "news.n5.h": {en:"Fall Adult Sunday School", "zh-hant":"秋季班成人主日學", "zh-hans":"秋季班成人主日学"},
+    "news.n5.p": {en:"Joy of Bible Reading (8) · Romans · Discipleship Training (4): Receiving God's Word · Foundations of the Faith", "zh-hant":"讀經樂（八）．羅馬書．門徒訓練（四）：領受神的話．基要真理", "zh-hans":"读经乐（八）．罗马书．门徒训练（四）：领受神的话．基要真理"},
+    "news.note": {en:"Pulled from the church's Mandarin congregation page (ccic-sj.org/mandarin/about) as of Nov 2026, translated for this demo. On the real site this block would be editable by church staff through a simple admin page — no code changes required.", "zh-hant":"本區塊內容取自教會國語部網頁（ccic-sj.org/mandarin/about，2026年11月），為本展示站翻譯整理。正式上線後，教會同工將可透過簡易後台直接更新此區塊，無需改動程式碼。", "zh-hans":"本区块内容取自教会国语部网页（ccic-sj.org/mandarin/about，2026年11月），为本演示站翻译整理。正式上线后，教会同工将可通过简易后台直接更新此区块，无需改动程序代码。"},
     "about.eyebrow": {en:"Our Story", "zh-hant":"我們的歷史", "zh-hans":"我们的历史"},
     "about.title": {en:"From a dorm Bible study to a family of churches", "zh-hant":"從一個查經班到一個教會家族", "zh-hans":"从一个查经班到一个教会家族"},
     "about.sub": {en:"A non-denominational church rooted in Scripture and nearly six decades of faithfulness in Silicon Valley.",
