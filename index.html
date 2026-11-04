@@ -292,7 +292,7 @@ nav.main a.active{color:var(--ink); font-weight:800}
 /* ---------- featured teaching series ---------- */
 .featured-course{
   background:linear-gradient(150deg, var(--band-bg), #163028); color:var(--band-fg);
-  border-radius:24px; padding:40px; margin:0 0 48px; position:relative; isolation:isolate; overflow:hidden;
+  border-radius:24px; padding:40px; margin:28px 0 48px; position:relative; isolation:isolate; overflow:hidden;
 }
 .featured-course::before{content:""; position:absolute; inset:0; z-index:0; opacity:.5;
   background:radial-gradient(circle at 15% 20%, color-mix(in srgb, var(--gold) 30%, transparent), transparent 45%),
@@ -942,6 +942,15 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
         <p data-i18n="watch.lib.sub">113 messages from our YouTube channel, 2015–present — browse by date and type, or search by topic, scripture, and speaker where that's been tagged.</p>
       </div>
 
+      <div class="sermon-tools reveal">
+        <input type="search" class="sermon-search" id="sermonSearch" data-i18n-ph="watch.lib.search.ph" placeholder="Search by topic, scripture, or speaker…">
+        <div class="sermon-chiprow" id="sermonCatChips" role="group" aria-label="Filter by type"></div>
+        <select class="sermon-sort" id="sermonSort">
+          <option value="date" data-i18n="watch.lib.sort.date">Newest first</option>
+          <option value="views" data-i18n="watch.lib.sort.views">Least watched first</option>
+        </select>
+      </div>
+
       <div class="featured-course reveal" id="featuredCourse">
         <span class="fc-badge" data-i18n="watch.fc.badge">系列課程 · Teaching Series</span>
         <h3 data-i18n="watch.fc.title">Systematic Theology — 51 Lessons</h3>
@@ -956,15 +965,6 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
           <b data-i18n="watch.fc.bio.label">For the elder board</b>
           <span data-i18n="watch.fc.bio">This draft doesn't credit the teacher by name here, by design — whether and how to recognize her (a byline, a short note, a link to her published books) is a call for the elder board and her, not something to assume. Let us know how you'd like it handled, if at all.</span>
         </div>
-      </div>
-
-      <div class="sermon-tools reveal">
-        <input type="search" class="sermon-search" id="sermonSearch" data-i18n-ph="watch.lib.search.ph" placeholder="Search by topic, scripture, or speaker…">
-        <div class="sermon-chiprow" id="sermonCatChips" role="group" aria-label="Filter by type"></div>
-        <select class="sermon-sort" id="sermonSort">
-          <option value="date" data-i18n="watch.lib.sort.date">Newest first</option>
-          <option value="views" data-i18n="watch.lib.sort.views">Least watched first</option>
-        </select>
       </div>
       <div class="sermon-count reveal" id="sermonCount"></div>
       <div class="sermon-grid reveal" id="sermonGrid"></div>
