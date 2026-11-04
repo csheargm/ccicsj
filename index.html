@@ -284,8 +284,30 @@ nav.main a.active{color:var(--ink); font-weight:800}
 .sermon-more-wrap{text-align:center; margin-top:28px}
 .sermon-more{padding:12px 30px; border-radius:999px; border:1px solid var(--line-ink); background:transparent; color:var(--ink); font-weight:700; cursor:pointer; font-size:.95rem; font-family:inherit}
 .sermon-note{margin-top:22px; font-size:.82rem; color:var(--muted); text-align:center; max-width:70ch; margin-inline:auto}
+.sermon-vc{display:inline-flex; align-items:center; gap:4px; color:var(--muted)}
+.sermon-sort{border:1px solid var(--line); background:var(--panel); color:var(--ink); border-radius:999px; padding:9px 16px; font-size:.86rem; font-weight:700; font-family:inherit; flex:none}
 @media (max-width:860px){.sermon-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.sermon-grid{grid-template-columns:1fr}; .sermon-search{flex:1 1 100%}}
+
+/* ---------- featured teaching series ---------- */
+.featured-course{
+  background:linear-gradient(150deg, var(--band-bg), #163028); color:var(--band-fg);
+  border-radius:24px; padding:40px; margin:0 0 48px; position:relative; isolation:isolate; overflow:hidden;
+}
+.featured-course::before{content:""; position:absolute; inset:0; z-index:0; opacity:.5;
+  background:radial-gradient(circle at 15% 20%, color-mix(in srgb, var(--gold) 30%, transparent), transparent 45%),
+             radial-gradient(circle at 90% 90%, color-mix(in srgb, var(--wine) 35%, transparent), transparent 50%);
+}
+.featured-course > *{position:relative; z-index:1}
+.fc-badge{display:inline-flex; font-size:.78rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-soft); background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); border-radius:999px; padding:6px 14px; margin-bottom:14px}
+.featured-course h3{font-size:clamp(1.5rem,3vw,2rem); margin:0 0 12px; color:#fff}
+.featured-course p.fc-lead{font-size:1.08rem; color:rgba(244,241,232,.88); max-width:62ch; line-height:1.6; margin:0 0 26px}
+.fc-stats{display:flex; gap:36px; flex-wrap:wrap; margin-bottom:28px; padding-top:22px; border-top:1px solid rgba(255,255,255,.16)}
+.fc-stats div b{display:block; font-family:var(--font-display); font-size:2rem; color:var(--gold-soft)}
+.fc-stats div span{font-size:.84rem; color:rgba(244,241,232,.72)}
+.fc-placeholder{border:1px dashed rgba(255,255,255,.35); border-radius:12px; padding:16px 18px; margin-top:16px; font-size:.86rem; color:rgba(244,241,232,.75); line-height:1.6}
+.fc-placeholder b{display:block; color:var(--gold-soft); font-size:.78rem; text-transform:uppercase; letter-spacing:.05em; margin-bottom:5px}
+@media (max-width:640px){.featured-course{padding:28px}}
 
 /* ---------- missions timeline ---------- */
 .mission-quote{border-left:4px solid var(--gold); padding-left:24px; margin:0 0 38px; font-family:var(--font-display); font-size:1.5rem; font-style:italic; line-height:1.4}
@@ -919,9 +941,34 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
         <h2 data-i18n="watch.lib.title">Search our sermon archive</h2>
         <p data-i18n="watch.lib.sub">113 messages from our YouTube channel, 2015–present — browse by date and type, or search by topic, scripture, and speaker where that's been tagged.</p>
       </div>
+
+      <div class="featured-course reveal" id="featuredCourse">
+        <span class="fc-badge" data-i18n="watch.fc.badge">系列課程 · Teaching Series</span>
+        <h3 data-i18n="watch.fc.title">李悌华 Systematic Theology — 51 Lessons</h3>
+        <p class="fc-lead" data-i18n="watch.fc.p">A complete course on the foundations of the Christian faith — Scripture, God, Man, Sin, the Devil, Salvation, the Christian life, the Church, and the Second Coming — recorded lesson by lesson. It's been sitting on our channel for a decade, largely undiscovered.</p>
+        <div class="fc-stats">
+          <div><b>51</b><span data-i18n="watch.fc.stat1">Recorded lessons</span></div>
+          <div><b>~1,100</b><span data-i18n="watch.fc.stat2">Total views across all 51, in 10 years</span></div>
+          <div><b>9</b><span data-i18n="watch.fc.stat3">Topics, start to finish</span></div>
+        </div>
+        <button type="button" class="cta" id="fcViewAll" data-i18n="watch.fc.cta">Watch the Full Series →</button>
+        <div class="fc-placeholder">
+          <b data-i18n="watch.fc.bio.label">For the elder board</b>
+          <span data-i18n="watch.fc.bio">Add a short introduction to 李悌华 here — her ministry and teaching, in her own words or the church's. (Deliberately left blank in this draft — nothing about her personally has been added without her and the church's say-so.)</span>
+        </div>
+        <div class="fc-placeholder">
+          <b data-i18n="watch.fc.books.label">For the elder board</b>
+          <span data-i18n="watch.fc.books">She has also published books on the Bible — if the church wants those listed or linked here (title, cover, where to get a copy), send them over and they'll go in.</span>
+        </div>
+      </div>
+
       <div class="sermon-tools reveal">
         <input type="search" class="sermon-search" id="sermonSearch" data-i18n-ph="watch.lib.search.ph" placeholder="Search by topic, scripture, or speaker…">
         <div class="sermon-chiprow" id="sermonCatChips" role="group" aria-label="Filter by type"></div>
+        <select class="sermon-sort" id="sermonSort">
+          <option value="date" data-i18n="watch.lib.sort.date">Newest first</option>
+          <option value="views" data-i18n="watch.lib.sort.views">Least watched first</option>
+        </select>
       </div>
       <div class="sermon-count reveal" id="sermonCount"></div>
       <div class="sermon-grid reveal" id="sermonGrid"></div>
@@ -1473,6 +1520,9 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
     "watch.lib.chip.retreat": {en:"Retreat & Conference", "zh-hant":"退修會／宣教年會", "zh-hans":"退修会／宣教年会"},
     "watch.lib.chip.holiday": {en:"Holiday Service", "zh-hant":"節期聚會", "zh-hans":"节期聚会"},
     "watch.lib.chip.other": {en:"Other", "zh-hant":"其他", "zh-hans":"其他"},
+    "watch.lib.sort.date": {en:"Newest first", "zh-hant":"由新到舊", "zh-hans":"由新到旧"},
+    "watch.lib.sort.views": {en:"Least watched first", "zh-hant":"觀看次數最少優先", "zh-hans":"观看次数最少优先"},
+    "watch.lib.views": {en:"{n} views", "zh-hant":"{n} 次觀看", "zh-hans":"{n} 次观看"},
     "watch.lib.more": {en:"Show more", "zh-hant":"顯示更多", "zh-hans":"显示更多"},
     "watch.lib.empty": {en:"No messages match your search.", "zh-hant":"沒有符合搜尋條件的信息。", "zh-hans":"没有符合搜索条件的信息。"},
     "watch.lib.count": {en:"Showing {n} of {total}", "zh-hant":"顯示 {total} 篇中的 {n} 篇", "zh-hans":"显示 {total} 篇中的 {n} 篇"},
@@ -1480,6 +1530,24 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
     "watch.lib.note": {en:"Pulled from the real titles and descriptions already public on our YouTube channel. 63 of these 113 messages have a topic, scripture passage, or speaker tagged in their description, and search matches those — the rest are still browsable by date and type. Tagging more descriptions going forward (or pulling from another source, like sermon notes) would make more of the archive searchable.",
       "zh-hant":"本清單取自我們YouTube頻道上已公開的真實標題與說明。113篇信息中有63篇的說明已標註主題、經文或講員，搜尋功能會比對這些內容——其餘仍可依日期與類型瀏覽。未來若持續在說明中標註（或改用講道筆記等其他資料來源），可搜尋的範圍會持續擴大。",
       "zh-hans":"本清单取自我们YouTube频道上已公开的真实标题与说明。113篇信息中有63篇的说明已标注主题、经文或讲员，搜索功能会比对这些内容——其余仍可依日期与类型浏览。未来若持续在说明中标注（或改用讲道笔记等其他资料来源），可搜索的范围会持续扩大。"},
+
+    "watch.fc.badge": {en:"Teaching Series", "zh-hant":"系列課程 · Teaching Series", "zh-hans":"系列课程 · Teaching Series"},
+    "watch.fc.title": {en:"李悌华 Systematic Theology — 51 Lessons", "zh-hant":"李悌华系統神學 — 共51課", "zh-hans":"李悌华系统神学 — 共51课"},
+    "watch.fc.p": {en:"A complete course on the foundations of the Christian faith — Scripture, God, Man, Sin, the Devil, Salvation, the Christian life, the Church, and the Second Coming — recorded lesson by lesson. It's been sitting on our channel for a decade, largely undiscovered.",
+      "zh-hant":"一套完整的基督教信仰基礎課程——聖經、神、人、罪、魔鬼、救恩、基督徒生活、教會、主再來——逐課錄製。這套課程已靜靜躺在我們的頻道十年，卻鮮少有人發現。",
+      "zh-hans":"一套完整的基督教信仰基础课程——圣经、神、人、罪、魔鬼、救恩、基督徒生活、教会、主再来——逐课录制。这套课程已静静躺在我们的频道十年，却鲜少有人发现。"},
+    "watch.fc.stat1": {en:"Recorded lessons", "zh-hant":"課完整錄製", "zh-hans":"课完整录制"},
+    "watch.fc.stat2": {en:"Total views across all 51, in 10 years", "zh-hant":"全部51課十年來的總觀看次數", "zh-hans":"全部51课十年来的总观看次数"},
+    "watch.fc.stat3": {en:"Topics, start to finish", "zh-hant":"大主題，從頭到尾", "zh-hans":"大主题，从头到尾"},
+    "watch.fc.cta": {en:"Watch the Full Series →", "zh-hant":"觀看完整系列 →", "zh-hans":"观看完整系列 →"},
+    "watch.fc.bio.label": {en:"For the elder board", "zh-hant":"致長老會", "zh-hans":"致长老会"},
+    "watch.fc.bio": {en:"Add a short introduction to 李悌华 here — her ministry and teaching, in her own words or the church's. (Deliberately left blank in this draft — nothing about her personally has been added without her and the church's say-so.)",
+      "zh-hant":"請在此處加入李悌华的簡短介紹——她的服事與教導，可用她本人或教會的文字。（此草稿刻意留白——未經她本人與教會同意，不會加入任何個人資料。）",
+      "zh-hans":"请在此处加入李悌华的简短介绍——她的服事与教导，可用她本人或教会的文字。（此草稿刻意留白——未经她本人与教会同意，不会加入任何个人资料。）"},
+    "watch.fc.books.label": {en:"For the elder board", "zh-hant":"致長老會", "zh-hans":"致长老会"},
+    "watch.fc.books": {en:"She has also published books on the Bible — if the church wants those listed or linked here (title, cover, where to get a copy), send them over and they'll go in.",
+      "zh-hant":"她也出版過聖經相關書籍——若教會希望在此列出或連結（書名、封面、購買／索取方式），請提供，我們會加入。",
+      "zh-hans":"她也出版过圣经相关书籍——若教会希望在此列出或链接（书名、封面、购买／索取方式），请提供，我们会加入。"},
     "foot.youtube": {en:"Watch on YouTube", "zh-hant":"於YouTube觀看", "zh-hans":"于YouTube观看"},
 
     "chat.fab": {en:"Ask CCIC (Demo)", "zh-hant":"詢問 CCIC（示範）", "zh-hans":"询问 CCIC（示范）"},
@@ -1646,120 +1714,120 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
   // scripture/preacher parsed from video titles + descriptions). See repo README for
   // how this was generated and how to refresh it.
   const SERMONS = [
-{id:"pRvOh0oFZrk",date:"2026-09-07",title:"活水的江河",vt:"聖荷西基督徒會堂主日崇拜 9/6/2026 完整版",scr:"約翰福音7:37 - 39",pr:null,lang:"zh",cat:"sunday"},
-{id:"rxFg3tAj8y4",date:"2025-11-09",title:"那獨居的民，不列在萬民之中（下）",vt:"聖荷西基督徒會堂國語主日崇拜 - 11/9/2025",scr:"以西結書36:24，以賽亞書43:5-6",pr:null,lang:"zh",cat:"sunday"},
-{id:"GTiFvKDECYw",date:"2025-07-06",title:null,vt:"Fengyan, Anna, Angela 分享Martha 给他们的帮助",scr:null,pr:null,lang:"zh",cat:"other"},
-{id:"hgJPTbstLk4",date:"2022-12-19",title:null,vt:"圣荷西基督徒会堂锡安团契圣诞福音聚会 12/16/2022",scr:null,pr:null,lang:"zh",cat:"holiday"},
-{id:"1Ylq30tMFzE",date:"2022-09-25",title:null,vt:"2022 MISSION CONFERENCE - Sunday 9/18",scr:null,pr:null,lang:"en",cat:"retreat"},
-{id:"glHUBj2xwdw",date:"2022-09-25",title:null,vt:"2022 MISSION CONFERENCE - Saturday 9/17",scr:null,pr:null,lang:"en",cat:"retreat"},
-{id:"nF3yM8nuoOc",date:"2022-09-25",title:null,vt:"2022 MISSION CONFERENCE - Friday 9/16",scr:null,pr:null,lang:"en",cat:"retreat"},
-{id:"A7PzcN2uGvw",date:"2022-05-15",title:"窄門小路",vt:"聖荷西基督徒會堂國語主日崇拜   5/15/2022",scr:"馬太福音 7 : 13 - 14",pr:"焦惠東 長老",lang:"zh",cat:"sunday"},
-{id:"RHtNS9FHn8A",date:"2021-12-04",title:null,vt:"礼拜天11AM 2021聖荷西/中聖荷西基督徒會堂聯合冬令會 敬拜赞美",scr:null,pr:null,lang:"zh",cat:"retreat"},
-{id:"W98Qix8VtWs",date:"2021-12-03",title:null,vt:"礼拜六5:00PM 2021聖荷西/中聖荷西基督徒會堂聯合冬令會 林师母專題2A 落日余晖，仍绽光芒",scr:null,pr:null,lang:"zh",cat:"retreat"},
-{id:"YBExLrBthAs",date:"2021-12-03",title:null,vt:"礼拜五5:00PM 2021聖荷西/中聖荷西 基督徒會堂 聯合冬令會 張志吉牧師專題：從詩篇學習禱告",scr:null,pr:null,lang:"zh",cat:"retreat"},
-{id:"X9ZQhDu30-A",date:"2021-11-29",title:null,vt:"礼拜天9:00AM冬令会主题信息四 第一部分",scr:null,pr:null,lang:"zh",cat:"retreat"},
-{id:"2kA2pKN1k18",date:"2021-03-31",title:"主耶穌被埋葬",vt:"聖荷西基督徒會堂2021主耶穌受難節聚會 读经七",scr:"約翰福音19章38-42節",pr:null,lang:"zh",cat:"holiday"},
-{id:"1BgbioTjs7I",date:"2021-03-31",title:"主耶穌的受死",vt:"聖荷西基督徒會堂2021主耶穌受難節聚會 读经六",scr:"馬太福音27章45-54節",pr:null,lang:"zh",cat:"holiday"},
-{id:"VjPUDmC2AQg",date:"2021-03-31",title:"主耶穌被釘十字架被羞辱",vt:"聖荷西基督徒會堂2021主耶穌受難節聚會 读经五",scr:"路加福音23章32-43節",pr:null,lang:"zh",cat:"holiday"},
-{id:"qHA8qtrPGqk",date:"2021-03-31",title:"主耶穌受審遭控",vt:"聖荷西基督徒會堂2021主耶穌受難節聚會 读经四",scr:"馬太福音27章11-14， 20-29節",pr:null,lang:"zh",cat:"holiday"},
-{id:"dgdy7NHf8_c",date:"2021-03-31",title:"門徒彼得三次不認主耶穌",vt:"聖荷西基督徒會堂2021主耶穌受難節聚會 读经三",scr:"路加福音22章54-62節",pr:null,lang:"zh",cat:"holiday"},
-{id:"cQx-yA_3BTs",date:"2021-03-31",title:"猶大背叛主耶穌",vt:"聖荷西基督徒會堂2021主耶穌受難節聚會 读经一",scr:"馬可福音14章10-13, 16-21節",pr:null,lang:"zh",cat:"holiday"},
-{id:"1cV_nxohyTs",date:"2021-03-31",title:"主耶穌靈裡傷痛與被捕",vt:"聖荷西基督徒會堂2021主耶穌受難節聚會 读经二",scr:"馬太福音26章36-50節",pr:null,lang:"zh",cat:"holiday"},
-{id:"BIgkBw8_ipo",date:"2021-03-28",title:"看傳道， 看同工， 看自己",vt:"聖荷西基督徒會堂國語主日崇拜 - 03/28/2021",scr:"馬太福音11:1-15",pr:"夏國仁弟兄",lang:"zh",cat:"sunday"},
-{id:"9eTgx_0AQWg",date:"2021-03-21",title:"我們卻是天上的國民",vt:"聖荷西基督徒會堂國語主日崇拜 - 03/21/2021",scr:"腓利比書 3:17-21",pr:"焦惠東長老",lang:"zh",cat:"sunday"},
-{id:"4HJPLsLP1Uk",date:"2021-03-14",title:"如鷹展翅上騰（沈有方）",vt:"聖荷西基督徒會堂國語主日崇拜 - 03/14/2021",scr:"以賽亞書 40:1-5，9-11，27-31",pr:null,lang:"zh",cat:"sunday"},
-{id:"HnSrILF-zxg",date:"2021-03-07",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 03/07/2021",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"pkTwgMVGbrI",date:"2021-02-28",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 2/28/2021",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"D4amOGb0cIs",date:"2021-02-21",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 02/21/2021",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"atDrQfmSkls",date:"2021-02-14",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 02/14/2021",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"BXXXhS9OTzc",date:"2021-02-07",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 02/07/2021",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"quVm42aKd-k",date:"2021-01-31",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 01/31/2021",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"i4hWABUcueE",date:"2021-01-24",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 01/24/2021",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"EBEXbBTIOZY",date:"2021-01-17",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 01/17/2021",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"dvb_MuUPDwQ",date:"2021-01-10",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 01/10/2021",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"XZFdvNoWzXI",date:"2021-01-03",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 01/03/2021",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"NJhaQXLWupw",date:"2020-12-27",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 12/27/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"mBPtn0A2iJ8",date:"2020-12-20",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 12/20/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"-h0AzxXyvRY",date:"2020-12-13",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 12/13/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"L41CJGmPUXY",date:"2020-12-06",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 12/6/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"BYAwBN_g72o",date:"2020-11-29",title:null,vt:"聖荷西基督徒會堂國語冬令會 - 主題信息 四 - 11/29/2020 (聖荷西基督徒會堂國語主日崇拜11/29/2020)",scr:null,pr:null,lang:"zh",cat:"retreat"},
-{id:"-tkVOuo9FdQ",date:"2020-11-28",title:null,vt:"聖荷西基督徒會堂國語冬令會 - 主題信息二 - 11/28/2020",scr:null,pr:null,lang:"zh",cat:"retreat"},
-{id:"x5n4j2tVAOA",date:"2020-11-28",title:null,vt:"聖荷西基督徒會堂國語冬令會 - 主題信息三 - 11/28/2020",scr:null,pr:null,lang:"zh",cat:"retreat"},
-{id:"17gRJNaUmTk",date:"2020-11-27",title:null,vt:"聖荷西基督徒會堂國語冬令會 - 主題信息一 - 11/27/2020",scr:null,pr:null,lang:"zh",cat:"retreat"},
-{id:"htyB1KkaenA",date:"2020-10-11",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 10/11/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"K4wtlm1iKe8",date:"2020-10-04",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 10/04/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"x8mhPvY3CnM",date:"2020-09-27",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 09/27/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"aI9BZD3Q2wM",date:"2020-09-20",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 09/20/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"ziNwZLHF8ZM",date:"2020-09-13",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 09/13/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"govOk5qXg-g",date:"2020-09-06",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 9/6/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"8znqLpTcfew",date:"2020-08-30",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 08/30/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"czguujM_AWw",date:"2020-08-23",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 08/23/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"-_ClVmjfAGw",date:"2020-08-16",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 08162020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"lvQl4DkKNd0",date:"2020-08-09",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 08/09/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"c8WZQQElMc4",date:"2020-08-02",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 08/02/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"O-cLH--SqYE",date:"2020-07-26",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 07/26/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"j5XwYRyK4_g",date:"2020-07-19",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 07/19/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"IKn9ekf3sC8",date:"2020-07-12",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 07/12/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"CgP_TtWREq4",date:"2020-07-05",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 07/05/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"yRNdB0gan4U",date:"2020-06-28",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 06/28/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"O8KIGFiJFsY",date:"2020-06-21",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 06/21/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"zsm74lEXHc0",date:"2020-06-14",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 06/14/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"Vu1dn52ghNk",date:"2020-06-07",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 06/07/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"TIqYRARfn3M",date:"2020-05-31",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 05/31/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"woBV7qw4lsg",date:"2020-05-24",title:null,vt:"聖荷西基督徒會堂國語主日崇拜05/24/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"UeOaYoBq5Js",date:"2020-05-17",title:null,vt:"聖荷西基督徒會堂國語主日崇拜05/17/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"HA5FS73fI4s",date:"2020-05-10",title:null,vt:"聖荷西基督徒會堂國語主日崇拜05/10/2020",scr:null,pr:null,lang:"zh",cat:"sunday"},
-{id:"SVj8wUw3Kz8",date:"2016-08-07",title:"教会 3",vt:"47 教会 3 － 李悌华 on 8 7 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"33_3flR3cMM",date:"2016-07-31",title:"教会 2",vt:"46 教会 2－ 李悌华 on 7 31 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"IC3_NzWyNTc",date:"2016-07-24",title:"教会 1",vt:"45 教会 1－ 李悌华 on 7 24 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"sGMH7XmWPhU",date:"2016-07-10",title:"基督徒的社会生活 2",vt:"44 基督徒的社会生活 2－ 李悌华 on 7 10 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"Md8Fu5VtY-s",date:"2016-07-03",title:"基督徒的社会生活 1",vt:"43 基督徒的社会生活 1－ 李悌华 on 7 3 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"bsGNYC3tGEI",date:"2016-06-26",title:"基督徒的婚姻家庭生活 2",vt:"40 基督徒的婚姻家庭生活 2－ 李悌华 on 6 26 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"UDsGJwytZPc",date:"2016-06-19",title:"基督徒的婚姻家庭生活 1",vt:"39 基督徒的婚姻家庭生活 1－ 李悌华 on 6 19 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"NIiKPeYrgqQ",date:"2016-06-12",title:"基督徒的个人生活 2",vt:"38 基督徒的个人生活 2 － 李悌华 on 6 12 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"gPJHgA85VFw",date:"2016-06-05",title:"基督徒的个人生活 1",vt:"37 基督徒的个人生活 1 － 李悌华 on 6 5 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"KHkup9mSqWM",date:"2016-05-29",title:"基督徒的教会生活 2",vt:"42 基督徒的教会生活 2 － 李悌华 on 5 29 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"f8BE0-AfjP0",date:"2016-05-22",title:"基督徒的教会生活 1",vt:"41 基督徒的教会生活 1 － 李悌华 on 5 22 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"WS3qwE47DaY",date:"2016-05-15",title:"基督徒生活总论",vt:"36 基督徒生活总论－ 李悌华 on 5 15 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"HaXx60hyPiU",date:"2016-05-08",title:"基督徒与罪 2",vt:"33 基督徒与罪 2 － 李悌华 on 5 8 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"PE_rnkto3oU",date:"2016-05-01",title:"基督徒与罪 1",vt:"32 基督徒与罪 1 － 李悌华 on 5 1 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"VnHnQd59MqI",date:"2016-04-24",title:"作主门徒 3",vt:"31 作主门徒 3 － 李悌华 on 4 24 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"JbeiFVzTEJk",date:"2016-04-17",title:"作主门徒 2",vt:"30 作主门徒 2 － 李悌华 on 4 17 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"oxIM0V8m57w",date:"2016-04-10",title:"作主门徒 1",vt:"29 作主门徒 1 － 李悌华 on 4 10 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"JAaxTRVemWg",date:"2016-04-03",title:"成圣",vt:"35 成圣 － 李悌华 on 4 03 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"kLZMjx7JsWM",date:"2016-03-27",title:"称义",vt:"34 称义 － 李悌华 on 3 27 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"yUhAXYJ6UoQ",date:"2016-03-20",title:"魔鬼 4",vt:"28 魔鬼 4 － 李悌华 on 3 20 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"TLZnXj4TXpU",date:"2016-03-13",title:"魔鬼 3",vt:"27 魔鬼 3 － 李悌华 on 3 13 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"LqPdZH7w-EY",date:"2016-03-06",title:"魔鬼 2",vt:"26 魔鬼 2 － 李悌华 on 3 6 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"8moeLkTW61s",date:"2016-02-28",title:"魔鬼 1",vt:"25 魔鬼 1 － 李悌华 on 2 28 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"rP4eVhufflU",date:"2016-02-21",title:"罪 4",vt:"24 罪 4 － 李悌华 on 2 21 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"iFEamcfFgqo",date:"2016-02-14",title:"罪 3",vt:"23 罪 3 － 李悌华 on 2 14 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"CPiS0i3Yo_w",date:"2016-02-07",title:"罪 2",vt:"22 罪 2 － 李悌华 on 2 7 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"8hKPYKjC4Ps",date:"2016-01-31",title:"罪 1",vt:"21 罪 1 － 李悌华 on 1 31 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"KZIO-WDfoQ4",date:"2016-01-24",title:"人 6",vt:"20 人 6 － 李悌华 on 1 24 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"wx_k-J44xWc",date:"2016-01-17",title:"人 5",vt:"19 人 5 － 李悌华 on 1 17 2016 2",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"L65wH3KNtqA",date:"2016-01-10",title:"人 4",vt:"18 人 4 － 李悌华 on 1 10 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"V3dmEbDXES4",date:"2016-01-03",title:"人 3",vt:"17 人 3 － 李悌华 on 1 3 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"dLzNhnb9OXA",date:"2015-12-27",title:"人 2",vt:"16 人 2 － 李悌华 on 12 27 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"XE3HmSLHVko",date:"2015-12-20",title:"人 1",vt:"15 人 1 － 李悌华 on 12 20 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"uLgs6Ji9I-o",date:"2015-12-13",title:"圣灵 3",vt:"14 圣灵 3 － 李悌华 on 12 13 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"rP62sVMpnuc",date:"2015-12-06",title:"圣灵 2",vt:"13 圣灵 2 － 李悌华 on 12 6 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"NWb0AuVzpBU",date:"2015-11-29",title:"圣灵 1",vt:"12 圣灵 1 － 李悌华 on 11 29 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"s-1zaYdHYeI",date:"2015-11-15",title:"神 6",vt:"11 神 6 － 李悌华 on 11 15 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"vkqRYheGeZE",date:"2015-11-08",title:"神 5",vt:"10 神 5 － 李悌华 on 11 8 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"VIC5iks6I3Q",date:"2015-11-01",title:"神 4",vt:"09 神 4 － 李悌华 on 11 1 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"IthJuTuAKss",date:"2015-10-25",title:"神 3",vt:"08 神 3 － 李悌华 on 10 25 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"jrXHihVkkqs",date:"2015-10-18",title:"神 2",vt:"07 神 2 － 李悌华 on 10 18 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"GGdBKjac4K8",date:"2015-10-11",title:"神 1",vt:"06 神 1 － 李悌华 on 10 11 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"CduJBfMAjhQ",date:"2015-10-04",title:"圣经 5",vt:"05 圣经 5 － 李悌华 on 10 4 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"Ya13l60kjv4",date:"2015-09-27",title:"圣经 4",vt:"04 圣经 4   李悌华 on 9 27 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"zadJJRlqkJI",date:"2015-09-20",title:"圣经 3",vt:"03 圣经 3   李悌华 on 9 20 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"z-5G6FST-Ig",date:"2015-09-13",title:"圣经 2",vt:"02 圣经 2    李悌华 on 9 13 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"SxxixepWWes",date:"2015-08-30",title:"主再来 4",vt:"51 主再来 4 －李悌华 on 8 30 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"XvifV_06FcQ",date:"2015-08-23",title:"主再来 3",vt:"50 主再来 3 － 李悌华 on 8 23 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"M0_qb6cMoe4",date:"2015-08-16",title:"主再来 2",vt:"49 主再来 2 － 李悌华 on 8 16 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series"},
-{id:"VzisR6k-79c",date:"2015-08-09",title:"主再来 1",vt:"48 主再来 1   李梯华 on 8 9 2015",scr:null,pr:"李梯华",lang:"zh",cat:"series"},
-];
+{id:"pRvOh0oFZrk",date:"2026-09-07",title:"活水的江河",vt:"聖荷西基督徒會堂主日崇拜 9/6/2026 完整版",scr:"約翰福音7:37 - 39",pr:null,lang:"zh",cat:"sunday",vc:91,ord:null},
+{id:"rxFg3tAj8y4",date:"2025-11-09",title:"那獨居的民，不列在萬民之中（下）",vt:"聖荷西基督徒會堂國語主日崇拜 - 11/9/2025",scr:"以西結書36:24，以賽亞書43:5-6",pr:null,lang:"zh",cat:"sunday",vc:217,ord:null},
+{id:"GTiFvKDECYw",date:"2025-07-06",title:null,vt:"Fengyan, Anna, Angela 分享Martha 给他们的帮助",scr:null,pr:null,lang:"zh",cat:"other",vc:188,ord:null},
+{id:"hgJPTbstLk4",date:"2022-12-19",title:null,vt:"圣荷西基督徒会堂锡安团契圣诞福音聚会 12/16/2022",scr:null,pr:null,lang:"zh",cat:"holiday",vc:765,ord:null},
+{id:"1Ylq30tMFzE",date:"2022-09-25",title:null,vt:"2022 MISSION CONFERENCE - Sunday 9/18",scr:null,pr:null,lang:"en",cat:"retreat",vc:162,ord:null},
+{id:"glHUBj2xwdw",date:"2022-09-25",title:null,vt:"2022 MISSION CONFERENCE - Saturday 9/17",scr:null,pr:null,lang:"en",cat:"retreat",vc:78,ord:null},
+{id:"nF3yM8nuoOc",date:"2022-09-25",title:null,vt:"2022 MISSION CONFERENCE - Friday 9/16",scr:null,pr:null,lang:"en",cat:"retreat",vc:56,ord:null},
+{id:"A7PzcN2uGvw",date:"2022-05-15",title:"窄門小路",vt:"聖荷西基督徒會堂國語主日崇拜   5/15/2022",scr:"馬太福音 7 : 13 - 14",pr:"焦惠東 長老",lang:"zh",cat:"sunday",vc:255,ord:null},
+{id:"RHtNS9FHn8A",date:"2021-12-04",title:null,vt:"礼拜天11AM 2021聖荷西/中聖荷西基督徒會堂聯合冬令會 敬拜赞美",scr:null,pr:null,lang:"zh",cat:"retreat",vc:100,ord:null},
+{id:"W98Qix8VtWs",date:"2021-12-03",title:null,vt:"礼拜六5:00PM 2021聖荷西/中聖荷西基督徒會堂聯合冬令會 林师母專題2A 落日余晖，仍绽光芒",scr:null,pr:null,lang:"zh",cat:"retreat",vc:75,ord:null},
+{id:"YBExLrBthAs",date:"2021-12-03",title:null,vt:"礼拜五5:00PM 2021聖荷西/中聖荷西 基督徒會堂 聯合冬令會 張志吉牧師專題：從詩篇學習禱告",scr:null,pr:null,lang:"zh",cat:"retreat",vc:165,ord:null},
+{id:"X9ZQhDu30-A",date:"2021-11-29",title:null,vt:"礼拜天9:00AM冬令会主题信息四 第一部分",scr:null,pr:null,lang:"zh",cat:"retreat",vc:161,ord:null},
+{id:"2kA2pKN1k18",date:"2021-03-31",title:"主耶穌被埋葬",vt:"聖荷西基督徒會堂2021主耶穌受難節聚會 读经七",scr:"約翰福音19章38-42節",pr:null,lang:"zh",cat:"holiday",vc:68,ord:null},
+{id:"1BgbioTjs7I",date:"2021-03-31",title:"主耶穌的受死",vt:"聖荷西基督徒會堂2021主耶穌受難節聚會 读经六",scr:"馬太福音27章45-54節",pr:null,lang:"zh",cat:"holiday",vc:34,ord:null},
+{id:"VjPUDmC2AQg",date:"2021-03-31",title:"主耶穌被釘十字架被羞辱",vt:"聖荷西基督徒會堂2021主耶穌受難節聚會 读经五",scr:"路加福音23章32-43節",pr:null,lang:"zh",cat:"holiday",vc:41,ord:null},
+{id:"qHA8qtrPGqk",date:"2021-03-31",title:"主耶穌受審遭控",vt:"聖荷西基督徒會堂2021主耶穌受難節聚會 读经四",scr:"馬太福音27章11-14， 20-29節",pr:null,lang:"zh",cat:"holiday",vc:32,ord:null},
+{id:"dgdy7NHf8_c",date:"2021-03-31",title:"門徒彼得三次不認主耶穌",vt:"聖荷西基督徒會堂2021主耶穌受難節聚會 读经三",scr:"路加福音22章54-62節",pr:null,lang:"zh",cat:"holiday",vc:43,ord:null},
+{id:"cQx-yA_3BTs",date:"2021-03-31",title:"猶大背叛主耶穌",vt:"聖荷西基督徒會堂2021主耶穌受難節聚會 读经一",scr:"馬可福音14章10-13, 16-21節",pr:null,lang:"zh",cat:"holiday",vc:57,ord:null},
+{id:"1cV_nxohyTs",date:"2021-03-31",title:"主耶穌靈裡傷痛與被捕",vt:"聖荷西基督徒會堂2021主耶穌受難節聚會 读经二",scr:"馬太福音26章36-50節",pr:null,lang:"zh",cat:"holiday",vc:31,ord:null},
+{id:"BIgkBw8_ipo",date:"2021-03-28",title:"看傳道， 看同工， 看自己",vt:"聖荷西基督徒會堂國語主日崇拜 - 03/28/2021",scr:"馬太福音11:1-15",pr:"夏國仁弟兄",lang:"zh",cat:"sunday",vc:366,ord:null},
+{id:"9eTgx_0AQWg",date:"2021-03-21",title:"我們卻是天上的國民",vt:"聖荷西基督徒會堂國語主日崇拜 - 03/21/2021",scr:"腓利比書 3:17-21",pr:"焦惠東長老",lang:"zh",cat:"sunday",vc:393,ord:null},
+{id:"4HJPLsLP1Uk",date:"2021-03-14",title:"如鷹展翅上騰（沈有方）",vt:"聖荷西基督徒會堂國語主日崇拜 - 03/14/2021",scr:"以賽亞書 40:1-5，9-11，27-31",pr:null,lang:"zh",cat:"sunday",vc:443,ord:null},
+{id:"HnSrILF-zxg",date:"2021-03-07",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 03/07/2021",scr:null,pr:null,lang:"zh",cat:"sunday",vc:682,ord:null},
+{id:"pkTwgMVGbrI",date:"2021-02-28",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 2/28/2021",scr:null,pr:null,lang:"zh",cat:"sunday",vc:446,ord:null},
+{id:"D4amOGb0cIs",date:"2021-02-21",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 02/21/2021",scr:null,pr:null,lang:"zh",cat:"sunday",vc:394,ord:null},
+{id:"atDrQfmSkls",date:"2021-02-14",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 02/14/2021",scr:null,pr:null,lang:"zh",cat:"sunday",vc:423,ord:null},
+{id:"BXXXhS9OTzc",date:"2021-02-07",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 02/07/2021",scr:null,pr:null,lang:"zh",cat:"sunday",vc:442,ord:null},
+{id:"quVm42aKd-k",date:"2021-01-31",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 01/31/2021",scr:null,pr:null,lang:"zh",cat:"sunday",vc:374,ord:null},
+{id:"i4hWABUcueE",date:"2021-01-24",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 01/24/2021",scr:null,pr:null,lang:"zh",cat:"sunday",vc:473,ord:null},
+{id:"EBEXbBTIOZY",date:"2021-01-17",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 01/17/2021",scr:null,pr:null,lang:"zh",cat:"sunday",vc:425,ord:null},
+{id:"dvb_MuUPDwQ",date:"2021-01-10",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 01/10/2021",scr:null,pr:null,lang:"zh",cat:"sunday",vc:429,ord:null},
+{id:"XZFdvNoWzXI",date:"2021-01-03",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 01/03/2021",scr:null,pr:null,lang:"zh",cat:"sunday",vc:414,ord:null},
+{id:"NJhaQXLWupw",date:"2020-12-27",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 12/27/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:441,ord:null},
+{id:"mBPtn0A2iJ8",date:"2020-12-20",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 12/20/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:350,ord:null},
+{id:"-h0AzxXyvRY",date:"2020-12-13",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 12/13/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:393,ord:null},
+{id:"L41CJGmPUXY",date:"2020-12-06",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 - 12/6/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:416,ord:null},
+{id:"BYAwBN_g72o",date:"2020-11-29",title:null,vt:"聖荷西基督徒會堂國語冬令會 - 主題信息 四 - 11/29/2020 (聖荷西基督徒會堂國語主日崇拜11/29/2020)",scr:null,pr:null,lang:"zh",cat:"retreat",vc:439,ord:null},
+{id:"-tkVOuo9FdQ",date:"2020-11-28",title:null,vt:"聖荷西基督徒會堂國語冬令會 - 主題信息二 - 11/28/2020",scr:null,pr:null,lang:"zh",cat:"retreat",vc:105,ord:null},
+{id:"x5n4j2tVAOA",date:"2020-11-28",title:null,vt:"聖荷西基督徒會堂國語冬令會 - 主題信息三 - 11/28/2020",scr:null,pr:null,lang:"zh",cat:"retreat",vc:186,ord:null},
+{id:"17gRJNaUmTk",date:"2020-11-27",title:null,vt:"聖荷西基督徒會堂國語冬令會 - 主題信息一 - 11/27/2020",scr:null,pr:null,lang:"zh",cat:"retreat",vc:256,ord:null},
+{id:"htyB1KkaenA",date:"2020-10-11",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 10/11/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:448,ord:null},
+{id:"K4wtlm1iKe8",date:"2020-10-04",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 10/04/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:456,ord:null},
+{id:"x8mhPvY3CnM",date:"2020-09-27",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 09/27/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:441,ord:null},
+{id:"aI9BZD3Q2wM",date:"2020-09-20",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 09/20/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:451,ord:null},
+{id:"ziNwZLHF8ZM",date:"2020-09-13",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 09/13/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:472,ord:null},
+{id:"govOk5qXg-g",date:"2020-09-06",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 9/6/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:439,ord:null},
+{id:"8znqLpTcfew",date:"2020-08-30",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 08/30/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:460,ord:null},
+{id:"czguujM_AWw",date:"2020-08-23",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 08/23/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:458,ord:null},
+{id:"-_ClVmjfAGw",date:"2020-08-16",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 08162020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:454,ord:null},
+{id:"lvQl4DkKNd0",date:"2020-08-09",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 08/09/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:397,ord:null},
+{id:"c8WZQQElMc4",date:"2020-08-02",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 08/02/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:545,ord:null},
+{id:"O-cLH--SqYE",date:"2020-07-26",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 07/26/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:580,ord:null},
+{id:"j5XwYRyK4_g",date:"2020-07-19",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 07/19/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:461,ord:null},
+{id:"IKn9ekf3sC8",date:"2020-07-12",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 07/12/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:587,ord:null},
+{id:"CgP_TtWREq4",date:"2020-07-05",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 07/05/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:624,ord:null},
+{id:"yRNdB0gan4U",date:"2020-06-28",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 06/28/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:557,ord:null},
+{id:"O8KIGFiJFsY",date:"2020-06-21",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 06/21/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:465,ord:null},
+{id:"zsm74lEXHc0",date:"2020-06-14",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 06/14/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:439,ord:null},
+{id:"Vu1dn52ghNk",date:"2020-06-07",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 06/07/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:497,ord:null},
+{id:"TIqYRARfn3M",date:"2020-05-31",title:null,vt:"聖荷西基督徒會堂國語主日崇拜 05/31/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:474,ord:null},
+{id:"woBV7qw4lsg",date:"2020-05-24",title:null,vt:"聖荷西基督徒會堂國語主日崇拜05/24/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:478,ord:null},
+{id:"UeOaYoBq5Js",date:"2020-05-17",title:null,vt:"聖荷西基督徒會堂國語主日崇拜05/17/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:458,ord:null},
+{id:"HA5FS73fI4s",date:"2020-05-10",title:null,vt:"聖荷西基督徒會堂國語主日崇拜05/10/2020",scr:null,pr:null,lang:"zh",cat:"sunday",vc:502,ord:null},
+{id:"SVj8wUw3Kz8",date:"2016-08-07",title:"教会 3",vt:"47 教会 3 － 李悌华 on 8 7 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:3,ord:47},
+{id:"33_3flR3cMM",date:"2016-07-31",title:"教会 2",vt:"46 教会 2－ 李悌华 on 7 31 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:19,ord:46},
+{id:"IC3_NzWyNTc",date:"2016-07-24",title:"教会 1",vt:"45 教会 1－ 李悌华 on 7 24 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:5,ord:45},
+{id:"sGMH7XmWPhU",date:"2016-07-10",title:"基督徒的社会生活 2",vt:"44 基督徒的社会生活 2－ 李悌华 on 7 10 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:21,ord:44},
+{id:"Md8Fu5VtY-s",date:"2016-07-03",title:"基督徒的社会生活 1",vt:"43 基督徒的社会生活 1－ 李悌华 on 7 3 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:28,ord:43},
+{id:"bsGNYC3tGEI",date:"2016-06-26",title:"基督徒的婚姻家庭生活 2",vt:"40 基督徒的婚姻家庭生活 2－ 李悌华 on 6 26 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:18,ord:40},
+{id:"UDsGJwytZPc",date:"2016-06-19",title:"基督徒的婚姻家庭生活 1",vt:"39 基督徒的婚姻家庭生活 1－ 李悌华 on 6 19 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:65,ord:39},
+{id:"NIiKPeYrgqQ",date:"2016-06-12",title:"基督徒的个人生活 2",vt:"38 基督徒的个人生活 2 － 李悌华 on 6 12 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:14,ord:38},
+{id:"gPJHgA85VFw",date:"2016-06-05",title:"基督徒的个人生活 1",vt:"37 基督徒的个人生活 1 － 李悌华 on 6 5 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:66,ord:37},
+{id:"KHkup9mSqWM",date:"2016-05-29",title:"基督徒的教会生活 2",vt:"42 基督徒的教会生活 2 － 李悌华 on 5 29 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:6,ord:42},
+{id:"f8BE0-AfjP0",date:"2016-05-22",title:"基督徒的教会生活 1",vt:"41 基督徒的教会生活 1 － 李悌华 on 5 22 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:31,ord:41},
+{id:"WS3qwE47DaY",date:"2016-05-15",title:"基督徒生活总论",vt:"36 基督徒生活总论－ 李悌华 on 5 15 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:23,ord:36},
+{id:"HaXx60hyPiU",date:"2016-05-08",title:"基督徒与罪 2",vt:"33 基督徒与罪 2 － 李悌华 on 5 8 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:4,ord:33},
+{id:"PE_rnkto3oU",date:"2016-05-01",title:"基督徒与罪 1",vt:"32 基督徒与罪 1 － 李悌华 on 5 1 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:14,ord:32},
+{id:"VnHnQd59MqI",date:"2016-04-24",title:"作主门徒 3",vt:"31 作主门徒 3 － 李悌华 on 4 24 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:9,ord:31},
+{id:"JbeiFVzTEJk",date:"2016-04-17",title:"作主门徒 2",vt:"30 作主门徒 2 － 李悌华 on 4 17 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:12,ord:30},
+{id:"oxIM0V8m57w",date:"2016-04-10",title:"作主门徒 1",vt:"29 作主门徒 1 － 李悌华 on 4 10 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:14,ord:29},
+{id:"JAaxTRVemWg",date:"2016-04-03",title:"成圣",vt:"35 成圣 － 李悌华 on 4 03 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:14,ord:35},
+{id:"kLZMjx7JsWM",date:"2016-03-27",title:"称义",vt:"34 称义 － 李悌华 on 3 27 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:3,ord:34},
+{id:"yUhAXYJ6UoQ",date:"2016-03-20",title:"魔鬼 4",vt:"28 魔鬼 4 － 李悌华 on 3 20 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:11,ord:28},
+{id:"TLZnXj4TXpU",date:"2016-03-13",title:"魔鬼 3",vt:"27 魔鬼 3 － 李悌华 on 3 13 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:9,ord:27},
+{id:"LqPdZH7w-EY",date:"2016-03-06",title:"魔鬼 2",vt:"26 魔鬼 2 － 李悌华 on 3 6 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:8,ord:26},
+{id:"8moeLkTW61s",date:"2016-02-28",title:"魔鬼 1",vt:"25 魔鬼 1 － 李悌华 on 2 28 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:8,ord:25},
+{id:"rP4eVhufflU",date:"2016-02-21",title:"罪 4",vt:"24 罪 4 － 李悌华 on 2 21 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:8,ord:24},
+{id:"iFEamcfFgqo",date:"2016-02-14",title:"罪 3",vt:"23 罪 3 － 李悌华 on 2 14 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:22,ord:23},
+{id:"CPiS0i3Yo_w",date:"2016-02-07",title:"罪 2",vt:"22 罪 2 － 李悌华 on 2 7 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:23,ord:22},
+{id:"8hKPYKjC4Ps",date:"2016-01-31",title:"罪 1",vt:"21 罪 1 － 李悌华 on 1 31 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:25,ord:21},
+{id:"KZIO-WDfoQ4",date:"2016-01-24",title:"人 6",vt:"20 人 6 － 李悌华 on 1 24 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:10,ord:20},
+{id:"wx_k-J44xWc",date:"2016-01-17",title:"人 5",vt:"19 人 5 － 李悌华 on 1 17 2016 2",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:10,ord:19},
+{id:"L65wH3KNtqA",date:"2016-01-10",title:"人 4",vt:"18 人 4 － 李悌华 on 1 10 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:13,ord:18},
+{id:"V3dmEbDXES4",date:"2016-01-03",title:"人 3",vt:"17 人 3 － 李悌华 on 1 3 2016",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:17,ord:17},
+{id:"dLzNhnb9OXA",date:"2015-12-27",title:"人 2",vt:"16 人 2 － 李悌华 on 12 27 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:20,ord:16},
+{id:"XE3HmSLHVko",date:"2015-12-20",title:"人 1",vt:"15 人 1 － 李悌华 on 12 20 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:33,ord:15},
+{id:"uLgs6Ji9I-o",date:"2015-12-13",title:"圣灵 3",vt:"14 圣灵 3 － 李悌华 on 12 13 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:10,ord:14},
+{id:"rP62sVMpnuc",date:"2015-12-06",title:"圣灵 2",vt:"13 圣灵 2 － 李悌华 on 12 6 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:13,ord:13},
+{id:"NWb0AuVzpBU",date:"2015-11-29",title:"圣灵 1",vt:"12 圣灵 1 － 李悌华 on 11 29 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:22,ord:12},
+{id:"s-1zaYdHYeI",date:"2015-11-15",title:"神 6",vt:"11 神 6 － 李悌华 on 11 15 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:21,ord:11},
+{id:"vkqRYheGeZE",date:"2015-11-08",title:"神 5",vt:"10 神 5 － 李悌华 on 11 8 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:14,ord:10},
+{id:"VIC5iks6I3Q",date:"2015-11-01",title:"神 4",vt:"09 神 4 － 李悌华 on 11 1 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:14,ord:9},
+{id:"IthJuTuAKss",date:"2015-10-25",title:"神 3",vt:"08 神 3 － 李悌华 on 10 25 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:19,ord:8},
+{id:"jrXHihVkkqs",date:"2015-10-18",title:"神 2",vt:"07 神 2 － 李悌华 on 10 18 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:18,ord:7},
+{id:"GGdBKjac4K8",date:"2015-10-11",title:"神 1",vt:"06 神 1 － 李悌华 on 10 11 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:45,ord:6},
+{id:"CduJBfMAjhQ",date:"2015-10-04",title:"圣经 5",vt:"05 圣经 5 － 李悌华 on 10 4 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:36,ord:5},
+{id:"Ya13l60kjv4",date:"2015-09-27",title:"圣经 4",vt:"04 圣经 4   李悌华 on 9 27 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:28,ord:4},
+{id:"zadJJRlqkJI",date:"2015-09-20",title:"圣经 3",vt:"03 圣经 3   李悌华 on 9 20 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:40,ord:3},
+{id:"z-5G6FST-Ig",date:"2015-09-13",title:"圣经 2",vt:"02 圣经 2    李悌华 on 9 13 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:172,ord:2},
+{id:"SxxixepWWes",date:"2015-08-30",title:"主再来 4",vt:"51 主再来 4 －李悌华 on 8 30 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:21,ord:51},
+{id:"XvifV_06FcQ",date:"2015-08-23",title:"主再来 3",vt:"50 主再来 3 － 李悌华 on 8 23 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:15,ord:50},
+{id:"M0_qb6cMoe4",date:"2015-08-16",title:"主再来 2",vt:"49 主再来 2 － 李悌华 on 8 16 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:20,ord:49},
+{id:"VzisR6k-79c",date:"2015-08-09",title:"主再来 1",vt:"48 主再来 1   李梯华 on 8 9 2015",scr:null,pr:"李悌华",lang:"zh",cat:"series",vc:20,ord:48},
+  ];
 
   (function(){
     var grid = document.getElementById("sermonGrid");
@@ -1769,9 +1837,12 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
     var moreWrap = document.getElementById("sermonMoreWrap");
     var moreBtn = document.getElementById("sermonMore");
     var countEl = document.getElementById("sermonCount");
+    var sortSelect = document.getElementById("sermonSort");
+    var fcViewAll = document.getElementById("fcViewAll");
 
     var CATS = ["all","sunday","series","retreat","holiday","other"];
     var activeCat = "all";
+    var sortMode = "date";
     var pageSize = 9;
     var shown = pageSize;
 
@@ -1809,9 +1880,15 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
       return parts[0] + "年" + parseInt(parts[1],10) + "月" + parseInt(parts[2],10) + "日";
     }
 
+    function sortFiltered(list){
+      if(sortMode === "views") return list.slice().sort(function(a,b){ return a.vc - b.vc; });
+      if(activeCat === "series") return list.slice().sort(function(a,b){ return (a.ord||0) - (b.ord||0); });
+      return list; // SERMONS is already date-desc, filtering preserves that order
+    }
+
     function renderGrid(){
       var q = searchInput.value.trim().toLowerCase();
-      var filtered = SERMONS.filter(function(e){ return matches(e, q); });
+      var filtered = sortFiltered(SERMONS.filter(function(e){ return matches(e, q); }));
       grid.innerHTML = "";
       if(!filtered.length){
         var empty = document.createElement("div");
@@ -1833,6 +1910,7 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
         var metaTags = "";
         if(e.scr) metaTags += '<span class="sermon-tag">' + escapeHtml(e.scr) + '</span>';
         if(e.pr) metaTags += '<span class="sermon-tag">' + escapeHtml(e.pr) + '</span>';
+        metaTags += '<span class="sermon-tag sermon-vc">' + escapeHtml(t("watch.lib.views").replace("{n}", e.vc)) + '</span>';
         a.innerHTML =
           '<div class="sermon-thumb"><img loading="lazy" src="https://i.ytimg.com/vi/' + e.id + '/hqdefault.jpg" alt=""><div class="play"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,.35)"/><path d="M10 8l6 4-6 4V8z" fill="#fff"/></svg></div></div>' +
           '<div class="sermon-body">' +
@@ -1849,6 +1927,14 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
 
     searchInput.addEventListener("input", function(){ shown = pageSize; renderGrid(); });
     moreBtn.addEventListener("click", function(){ shown += pageSize; renderGrid(); });
+    sortSelect.addEventListener("change", function(){ sortMode = sortSelect.value; shown = pageSize; renderGrid(); });
+    if(fcViewAll){
+      fcViewAll.addEventListener("click", function(){
+        activeCat = "series"; shown = pageSize;
+        renderChips(); renderGrid();
+        grid.scrollIntoView({behavior:"smooth", block:"start"});
+      });
+    }
 
     renderChips();
     renderGrid();
