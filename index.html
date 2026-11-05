@@ -221,6 +221,12 @@ nav.main a.active{color:var(--ink); font-weight:800}
 .timeline li::before{content:""; position:absolute; left:-33px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--gold)}
 .timeline b{font-family:var(--font-display); color:var(--gold-soft); display:block; font-size:1.1rem; margin-bottom:2px}
 @media (max-width:860px){.about-grid{grid-template-columns:1fr}}
+.story-card{margin-top:28px; display:flex; align-items:center; gap:18px; background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:20px 24px; text-decoration:none; color:inherit; transition:transform .25s ease, box-shadow .25s ease}
+.story-card:hover{transform:translateY(-2px); box-shadow:0 14px 30px -14px color-mix(in srgb, var(--wine) 50%, transparent)}
+.story-play{flex:none; width:52px; height:52px; border-radius:50%; display:grid; place-items:center; background:linear-gradient(145deg,var(--wine),#1fb3ad 65%,var(--wine)); color:#fff}
+.story-play svg{width:22px; height:22px}
+.story-card b{display:block; font-size:1.05rem; margin-bottom:4px}
+.story-card span span{color:var(--muted); font-size:.92rem; line-height:1.5}
 
 /* ---------- beliefs ---------- */
 .belief-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px}
@@ -744,6 +750,13 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
           <li><b data-i18n="about.tltoday.year">Today</b><span data-i18n="about.tl5">Known as CCIC-SJ, still gathering every Sunday to worship in three languages.</span></li>
         </ul>
       </div>
+      <a class="story-card reveal" href="https://www.youtube.com/watch?v=fHp2EFHIB5s" target="_blank" rel="noopener">
+        <span class="story-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7-11-7Z" fill="currentColor"/></svg></span>
+        <span>
+          <b data-i18n="about.story.h">Watch Our Story</b>
+          <span data-i18n="about.story.p">A longer look back at CCIC's history, in the voices of the people who lived it — recorded for the church, in Mandarin.</span>
+        </span>
+      </a>
     </div>
   </section>
 
@@ -1378,6 +1391,8 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
     "about.tl4": {en:"Sister CCICs are planted in Mountain View, South San Jose, Milpitas, Cupertino, and Central San Jose; Milpitas later plants Pleasanton.", "zh-hant":"在 Mountain View、南聖荷西、Milpitas、Cupertino 與中聖荷西植堂姊妹教會，Milpitas 堂後來再植 Pleasanton 堂。", "zh-hans":"在 Mountain View、南圣荷西、Milpitas、Cupertino 与中圣荷西植堂姊妹教会，Milpitas 堂后来再植 Pleasanton 堂。"},
     "about.tltoday.year": {en:"Today", "zh-hant":"今日", "zh-hans":"今日"},
     "about.tl5": {en:"Known as CCIC-SJ, still gathering every Sunday to worship in three languages.", "zh-hant":"今稱 CCIC-SJ，仍每個主日以三種語言一同敬拜。", "zh-hans":"今称 CCIC-SJ，仍每个主日以三种语言一同敬拜。"},
+    "about.story.h": {en:"Watch Our Story", "zh-hant":"觀看我們的故事", "zh-hans":"观看我们的故事"},
+    "about.story.p": {en:"A longer look back at CCIC's history, in the voices of the people who lived it — recorded for the church, in Mandarin.", "zh-hant":"一部更完整回顧教會歷史的影片，由親身經歷的弟兄姊妹口述——為教會拍攝，國語發音。", "zh-hans":"一部更完整回顾教会历史的影片，由亲身经历的弟兄姊妹口述——为教会拍摄，国语发音。"},
 
     "beliefs.eyebrow": {en:"What We Believe", "zh-hant":"我們所信的", "zh-hans":"我们所信的"},
     "beliefs.title": {en:"Our Statement of Faith", "zh-hant":"信仰告白", "zh-hans":"信仰告白"},
