@@ -227,6 +227,10 @@ nav.main a.active{color:var(--ink); font-weight:800}
 .story-play svg{width:22px; height:22px}
 .story-card b{display:block; font-size:1.05rem; margin-bottom:4px}
 .story-card span span{color:var(--muted); font-size:.92rem; line-height:1.5}
+.story-expand{margin-top:10px}
+.story-expand summary{cursor:pointer; list-style:none; color:var(--wine); font-weight:700; font-size:.95rem}
+.story-expand summary::-webkit-details-marker{display:none}
+.story-expand p{margin-top:12px}
 
 /* ---------- beliefs ---------- */
 .belief-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px}
@@ -741,7 +745,13 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
         <p data-i18n="about.sub">A non-denominational church rooted in Scripture and nearly six decades of faithfulness in Silicon Valley.</p>
       </div>
       <div class="about-grid">
-        <p class="reveal" data-i18n="about.body" style="font-size:1.2rem; line-height:1.65; color:var(--muted)"></p>
+        <div class="reveal">
+          <p data-i18n="about.body" style="font-size:1.2rem; line-height:1.65; color:var(--muted)"></p>
+          <details class="story-expand">
+            <summary data-i18n="about.readmore">Read the full story →</summary>
+            <p data-i18n="about.body.full" style="color:var(--muted); line-height:1.65"></p>
+          </details>
+        </div>
         <ul class="timeline reveal" style="border-left-color:var(--line)">
           <li><b>1969</b><span data-i18n="about.tl1">A handful of SJSU graduate students begin a small Bible study.</span></li>
           <li><b>1971</b><span data-i18n="about.tl2">The study becomes a church: Chinese Church In Christ.</span></li>
@@ -1380,9 +1390,13 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
     "about.sub": {en:"A non-denominational church rooted in Scripture and nearly six decades of faithfulness in Silicon Valley.",
       "zh-hant":"一間不屬任何宗派的教會，根植於聖經，在矽谷忠心服事近六十年。",
       "zh-hans":"一间不属任何宗派的教会，根植于圣经，在硅谷忠心服事近六十年。"},
-    "about.body": {en:"CCIC traces its roots to 1969, when a handful of graduate students at San Jose State University began a small Bible study. By 1971 that study had grown into a church — Chinese Church In Christ. In the decades since, our congregation has grown to embrace Mandarin, Cantonese, and English-speaking families, along with vibrant children's and youth ministries. As God multiplied our numbers, we planted sister CCIC congregations across the Bay Area — in Mountain View, South San Jose, Milpitas, Cupertino, and Central San Jose — with Milpitas later planting its own church in Pleasanton. Since each congregation now carries its city's name, ours became CCIC-SJ: an elder-governed, non-denominational church, still rooted in that first small Bible study.",
+    "about.body": {en:"CCIC began in 1969 as a small student Bible study at San Jose State — and grew into an elder-governed family of Bay Area churches.",
+      "zh-hant":"CCIC於1969年始於聖荷西州立大學一個小型學生查經班，如今已成長為灣區多間姊妹教會、由長老治理的教會家庭。",
+      "zh-hans":"CCIC于1969年始于圣荷西州立大学一个小型学生查经班，如今已成长为湾区多间姊妹教会、由长老治理的教会家庭。"},
+    "about.body.full": {en:"CCIC traces its roots to 1969, when a handful of graduate students at San Jose State University began a small Bible study. By 1971 that study had grown into a church — Chinese Church In Christ. In the decades since, our congregation has grown to embrace Mandarin, Cantonese, and English-speaking families, along with vibrant children's and youth ministries. As God multiplied our numbers, we planted sister CCIC congregations across the Bay Area — in Mountain View, South San Jose, Milpitas, Cupertino, and Central San Jose — with Milpitas later planting its own church in Pleasanton. Since each congregation now carries its city's name, ours became CCIC-SJ: an elder-governed, non-denominational church, still rooted in that first small Bible study.",
       "zh-hant":"CCIC的根源可追溯至1969年，幾位聖荷西州立大學的研究生開始了一個小型查經班。到1971年，這個查經班發展成為一間教會——聖荷西基督徒會堂。數十年來，我們的會眾不斷成長，涵蓋國語、粵語與英語家庭，並發展出活潑的兒童與青少年事工。隨著神使我們人數倍增，我們在灣區植堂多間姊妹教會——Mountain View、南聖荷西、Milpitas、Cupertino 與中聖荷西，其中 Milpitas 堂後來更在 Pleasanton 植堂。由於各堂現以所在城市命名，我們的教會因此定名為 CCIC-SJ：一間由長老治理、不屬任何宗派的教會，仍然紮根於當年那個小小的查經班。",
       "zh-hans":"CCIC的根源可追溯至1969年，几位圣荷西州立大学的研究生开始了一个小型查经班。到1971年，这个查经班发展成为一间教会——圣荷西基督徒会堂。数十年来，我们的会众不断成长，涵盖国语、粤语与英语家庭，并发展出活泼的儿童与青少年事工。随着神使我们人数倍增，我们在湾区植堂多间姊妹教会——Mountain View、南圣荷西、Milpitas、Cupertino 与中圣荷西，其中 Milpitas 堂后来更在 Pleasanton 植堂。由于各堂现以所在城市命名，我们的教会因此定名为 CCIC-SJ：一间由长老治理、不属任何宗派的教会，仍然扎根于当年那个小小的查经班。"},
+    "about.readmore": {en:"Read the full story →", "zh-hant":"閱讀完整故事 →", "zh-hans":"阅读完整故事 →"},
     "about.tl1": {en:"A handful of SJSU graduate students begin a small Bible study.", "zh-hant":"幾位聖荷西州立大學研究生開始了一個小型查經班。", "zh-hans":"几位圣荷西州立大学研究生开始了一个小型查经班。"},
     "about.tl2": {en:"The study becomes a church: Chinese Church In Christ.", "zh-hant":"查經班發展成為一間教會：聖荷西基督徒會堂。", "zh-hans":"查经班发展成为一间教会：圣荷西基督徒会堂。"},
     "about.tlgrow.year": {en:"Decades of growth", "zh-hant":"數十年的成長", "zh-hans":"数十年的成长"},
@@ -1569,9 +1583,9 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
       "zh-hant":"CCIC始於1969年，由一群離鄉背井的國際研究生所建立——而這份歡迎矽谷華人社區的心志，從未改變。",
       "zh-hans":"CCIC始于1969年，由一群离乡背井的国际研究生所建立——而这份欢迎硅谷华人社区的心志，从未改变。"},
     "comm.c1.h": {en:"Newcomer Welcome", "zh-hant":"迎新接待", "zh-hans":"迎新接待"},
-    "comm.c1.p": {en:"From young professionals starting their first Silicon Valley job to older parents and grandparents newly immigrated from China to be near family, we help newcomers of every age find community, language partners, and practical help settling in. Our 啟發課程 (Alpha Course) offers newcomers and spiritual seekers a relaxed, no-pressure way to explore the Christian faith together.",
-      "zh-hant":"從剛展開矽谷第一份工作的青年專業人士，到為與家人團聚而從中國新移民來的年長父母與長輩，我們協助各年齡層的新朋友找到團契、語言夥伴，並提供生活安頓上的實際幫助。我們的啟發課程（Alpha Course）以輕鬆、沒有壓力的方式，陪伴新朋友與慕道朋友一起探索基督信仰。",
-      "zh-hans":"从刚展开硅谷第一份工作的青年专业人士，到为与家人团聚而从中国新移民来的年长父母与长辈，我们协助各年龄层的新朋友找到团契、语言伙伴，并提供生活安顿上的实际帮助。我们的启发课程（Alpha Course）以轻松、没有压力的方式，陪伴新朋友与慕道朋友一起探索基督信仰。"},
+    "comm.c1.p": {en:"We help newcomers of every age find community and practical help settling in — including through our 啟發課程 (Alpha Course), a relaxed way to explore the Christian faith together.",
+      "zh-hant":"我們協助各年齡層的新朋友找到團契並安頓生活——包括我們的啟發課程（Alpha Course），以輕鬆的方式陪伴大家一起探索基督信仰。",
+      "zh-hans":"我们协助各年龄层的新朋友找到团契并安顿生活——包括我们的启发课程（Alpha Course），以轻松的方式陪伴大家一起探索基督信仰。"},
     "comm.c2.h": {en:"Multigenerational Family", "zh-hant":"跨代同行", "zh-hans":"跨代同行"},
     "comm.c2.p": {en:"Mandarin-speaking parents, Cantonese-speaking grandparents, and English-speaking children all worship under one roof — with ministries that bridge every generation.",
       "zh-hant":"說國語的父母、說粵語的長輩，以及說英語的孩子，同在一個屋頂下敬拜——各項事工致力連結每一個世代。",
@@ -1607,9 +1621,9 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
       "zh-hans":"为最近从中国、台湾及亚洲各地来到硅谷从事科技、生物科技工作或就读研究所的新朋友而设——用国语，与曾亲身经历的人一起讨论职涯、感情、签证压力与信仰问题。"},
     "next.path1.link": {en:"Sundays · Mandarin Congregation →", "zh-hant":"主日 · 國語堂會 →", "zh-hans":"主日 · 国语堂会 →"},
     "next.path2.h": {en:"English Ministry — Abide SJ", "zh-hant":"英語事工 — Abide SJ", "zh-hans":"英语事工 — Abide SJ"},
-    "next.path2.p": {en:"An English-speaking congregation for young adults and families — many grew up in this church, many are American-born Chinese professionals, and many are exploring faith or church for the first time. Worship, teaching, and small groups, in English.",
-      "zh-hant":"一個以英語聚會的堂會，服事青年與家庭——許多人在這間教會長大，許多是美籍華裔青年專業人士，也有許多人是第一次探索信仰或教會。以英語進行敬拜、信息教導與小組。",
-      "zh-hans":"一个以英语聚会的堂会，服事青年与家庭——许多人在这间教会长大，许多是美籍华裔青年专业人士，也有许多人是第一次探索信仰或教会。以英语进行敬拜、信息教导与小组。"},
+    "next.path2.p": {en:"Worship, teaching, and small groups in English — for young adults and families, whether raised in this church or new to it.",
+      "zh-hant":"以英語進行敬拜、信息教導與小組——服事青年與家庭，無論是在這間教會長大，或是初次接觸。",
+      "zh-hans":"以英语进行敬拜、信息教导与小组——服事青年与家庭，无论是在这间教会长大，或是初次接触。"},
     "next.path2.link": {en:"Sundays 11:00 · Abide SJ →", "zh-hant":"主日11:00 · Abide SJ →", "zh-hans":"主日11:00 · Abide SJ →"},
     "next.t1.q": {en:"I hadn't been to church since high school and had a lot of questions. Someone from Abide SJ just kept inviting me to dinner — no pressure, no pitch. That's how I found a few real friends here.",
       "zh-hant":"「高中以後我就沒再去過教會，心裡有很多疑問。Abide SJ的一位朋友就只是不斷邀請我吃飯——沒有壓力，也沒有催我做決定。我就是這樣在這裡交到了幾個真心的朋友。」",
