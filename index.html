@@ -192,7 +192,7 @@ nav.main a.active{color:var(--ink); font-weight:800}
 .hero h1{font-size:clamp(2.6rem,5.4vw,4.4rem); margin:18px 0 22px; line-height:1.1}
 .hero p.lead{font-size:1.35rem; color:var(--muted); max-width:42ch; margin-bottom:34px; line-height:1.6}
 .hero-ctas{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:40px}
-.hero-stats{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; border-top:1px solid var(--line); padding-top:26px}
+.hero-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; border-top:1px solid var(--line); padding-top:26px}
 .hero-stats div b{display:block; font-family:var(--font-display); font-size:2.4rem; color:var(--wine)}
 .hero-stats div span{font-size:.86rem; color:var(--muted); letter-spacing:.02em}
 .hero-card{
@@ -206,7 +206,7 @@ nav.main a.active{color:var(--ink); font-weight:800}
 .service-row .svc-room{font-size:.92rem; color:var(--muted)}
 .service-row .svc-time{font-family:var(--font-display); font-weight:700; font-size:1.2rem; color:var(--wine); text-align:right; white-space:nowrap}
 .hero-card .addr{margin-top:18px; padding-top:18px; border-top:1px solid var(--line); font-size:1rem; color:var(--muted)}
-@media (max-width:860px){.hero-grid{grid-template-columns:1fr} .hero-stats{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr} .hero-stats{grid-template-columns:repeat(3,1fr); gap:12px}}
 
 /* ---------- section headers ---------- */
 .sec-head{max-width:58ch; margin-bottom:48px}
@@ -662,10 +662,9 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
           <a href="#latest" class="cta grad2" data-i18n="hero.cta3">▶ Watch &amp; Listen</a>
         </div>
         <div class="hero-stats">
-          <div><b data-count="1971">1971</b><span data-i18n="hero.stat1">Church founded</span></div>
           <div><b data-count="3">3</b><span data-i18n="hero.stat2">Languages, one church</span></div>
-          <div><b data-count="6">6</b><span data-i18n="hero.stat3">Bay Area churches planted</span></div>
-          <div><b data-count="2">2</b><span data-i18n="hero.stat4">Sunday service times</span></div>
+          <div><b data-count="2">2</b><span data-i18n="hero.stat4">English &amp; Mandarin services</span></div>
+          <div><b data-count="1">1</b><span data-i18n="hero.stat5">Cantonese service</span></div>
         </div>
       </div>
       <div class="reveal in">
@@ -1384,10 +1383,9 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
       "zh-hans":"无论您是基督徒或非基督徒，住在附近或远方，长期定居或短暂公干，我们都欢迎您来到CCIC爱的大家庭，认识耶稣，更新生命。"},
     "hero.cta1": {en:"Plan Your Sunday Visit", "zh-hant":"安排主日來訪", "zh-hans":"安排主日来访"},
     "hero.cta2": {en:"Explore Ministries", "zh-hant":"瀏覽事工", "zh-hans":"浏览事工"},
-    "hero.stat1": {en:"Church founded", "zh-hant":"教會建立", "zh-hans":"教会建立"},
     "hero.stat2": {en:"Languages, one church", "zh-hant":"語言，同一個教會", "zh-hans":"语言，同一个教会"},
-    "hero.stat3": {en:"Bay Area churches planted", "zh-hant":"灣區植堂教會", "zh-hans":"湾区植堂教会"},
-    "hero.stat4": {en:"Sunday service times", "zh-hant":"主日崇拜時段", "zh-hans":"主日崇拜时段"},
+    "hero.stat4": {en:"English & Mandarin services", "zh-hant":"英語和國語崇拜", "zh-hans":"英语和国语崇拜"},
+    "hero.stat5": {en:"Cantonese service", "zh-hant":"粵語崇拜", "zh-hans":"粤语崇拜"},
     "hero.card.tag": {en:"This Sunday", "zh-hant":"本主日", "zh-hans":"本主日"},
     "hero.card.mandarin": {en:"Mandarin Worship", "zh-hant":"國語崇拜", "zh-hans":"国语崇拜"},
     "hero.card.english": {en:"English & Youth", "zh-hant":"英語 / 青年崇拜", "zh-hans":"英语 / 青年崇拜"},
