@@ -232,6 +232,17 @@ nav.main a.active{color:var(--ink); font-weight:800}
 .story-expand summary::-webkit-details-marker{display:none}
 .story-expand p{margin-top:12px}
 
+/* ---------- latest message (homepage, below hero) ---------- */
+.latest-msg{display:flex; gap:40px; align-items:center; background:var(--panel); border:1px solid var(--line); border-radius:22px; padding:28px; box-shadow:0 24px 50px -30px rgba(0,0,0,.3)}
+.latest-thumb{position:relative; flex:none; width:340px; border-radius:14px; overflow:hidden; display:block; line-height:0}
+.latest-thumb img{width:100%; display:block; aspect-ratio:16/9; object-fit:cover}
+.latest-thumb .play{position:absolute; inset:0; display:grid; place-items:center}
+.latest-thumb .play svg{width:56px; height:56px}
+.latest-msg-body{flex:1; min-width:0}
+.latest-scr{color:var(--gold-soft); font-weight:700; margin-top:4px}
+.latest-date{color:var(--muted); font-size:.92rem; margin-top:4px}
+@media (max-width:860px){.latest-msg{flex-direction:column; padding:20px} .latest-thumb{width:100%}}
+
 /* ---------- beliefs ---------- */
 .belief-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px}
 .belief-card{background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:32px; display:flex; flex-direction:column; gap:16px}
@@ -570,6 +581,7 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
 </style>
 </head>
 <body>
+
 <div class="lang-en notranslate" id="root" translate="no">
 
 <header class="site">
@@ -579,7 +591,7 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
     </a>
     <nav class="main" aria-label="Primary">
       <div class="nav-highlight" id="navHighlight" aria-hidden="true"></div>
-      <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#latest" data-i18n="nav.latest">Latest Message</a>
       <a href="#ministries" data-i18n="nav.ministries">Ministries</a>
       <a href="#watch" data-i18n="nav.watch">Watch</a>
       <a href="#give" data-i18n="nav.give">Give</a>
@@ -605,8 +617,8 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
     </div>
   </div>
   <div id="mobileNav">
+    <a href="#latest" data-i18n="nav.latest">Latest Message</a>
     <a href="#news" data-i18n="nav.news">News</a>
-    <a href="#about" data-i18n="nav.about">About</a>
     <a href="#community" data-i18n="nav.community">Community</a>
     <a href="#nextgen" data-i18n="nav.nextgen">Next Gen</a>
     <a href="#beliefs" data-i18n="nav.beliefs">Beliefs</a>
@@ -614,6 +626,7 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
     <a href="#watch" data-i18n="nav.watch">Watch</a>
     <a href="#missions" data-i18n="nav.missions">Missions</a>
     <a href="#give" data-i18n="nav.give">Give</a>
+    <a href="#about" data-i18n="nav.about">About</a>
     <a href="#visit" data-i18n="nav.visit">Visit</a>
   </div>
 </header>
@@ -646,7 +659,7 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
         <p class="lead" data-i18n="hero.sub">Whether you're a believer or just exploring, near or far, a long-time resident or passing through — you're welcome in our CCIC family, where lives are transformed by the gospel of Jesus Christ.</p>
         <div class="hero-ctas">
           <a href="#visit" class="cta" data-i18n="hero.cta1">Plan Your Sunday Visit</a>
-          <a href="#watch" class="cta grad2" data-i18n="hero.cta3">▶ Watch &amp; Listen</a>
+          <a href="#latest" class="cta grad2" data-i18n="hero.cta3">▶ Watch &amp; Listen</a>
         </div>
         <div class="hero-stats">
           <div><b data-count="1971">1971</b><span data-i18n="hero.stat1">Church founded</span></div>
@@ -671,6 +684,28 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
             <div class="svc-time" data-i18n="svc.time.cantonese" id="svc-time-cantonese">11:00–12:15</div>
           </div>
           <div class="addr"><a href="https://maps.google.com/?q=1490+Saratoga+Avenue,+San+Jose,+CA+95129" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline">1490 Saratoga Avenue, San Jose, CA 95129</a> · <a href="tel:+14083642242" style="color:inherit; text-decoration:underline">(408) 364-2242</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LATEST MESSAGE -->
+  <section class="band" id="latest">
+    <div class="wrap">
+      <div class="latest-msg reveal">
+        <a class="latest-thumb" href="https://www.youtube.com/watch?v=pRvOh0oFZrk" target="_blank" rel="noopener" aria-label="Watch this week's message on YouTube">
+          <img loading="lazy" src="https://i.ytimg.com/vi/pRvOh0oFZrk/hqdefault.jpg" alt="">
+          <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,.4)"/><path d="M10 8l6 4-6 4V8z" fill="#fff"/></svg></span>
+        </a>
+        <div class="latest-msg-body">
+          <p class="eyebrow" data-i18n="latest.eyebrow">This Week's Message</p>
+          <h2 data-i18n="latest.title">Rivers of Living Water</h2>
+          <p class="latest-scr" data-i18n="latest.scr">John 7:37–39</p>
+          <p class="latest-date" data-i18n="latest.date">Sunday, September 6, 2026 · Mandarin Congregation</p>
+          <div class="hero-ctas" style="margin-top:18px">
+            <a href="https://www.youtube.com/watch?v=pRvOh0oFZrk" target="_blank" rel="noopener" class="cta" data-i18n="latest.cta">▶ Watch Now</a>
+            <a href="#watch" class="cta ghost" data-i18n="latest.browse">Browse All Messages →</a>
+          </div>
         </div>
       </div>
     </div>
@@ -733,40 +768,6 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
         </details>
       </div>
       <p class="reveal" style="margin-top:20px; text-align:center; color:var(--muted); font-size:.82rem" data-i18n="news.note">Pulled from the church's Mandarin congregation page (ccic-sj.org/mandarin/about) as of Nov 2026, translated for this demo. On the real site this block would be editable by church staff through a simple admin page — no code changes required.</p>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="band" id="about">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <p class="eyebrow" data-i18n="about.eyebrow">Our Story</p>
-        <h2 data-i18n="about.title">From a dorm Bible study to a family of churches</h2>
-        <p data-i18n="about.sub">A non-denominational church rooted in Scripture and nearly six decades of faithfulness in Silicon Valley.</p>
-      </div>
-      <div class="about-grid">
-        <div class="reveal">
-          <p data-i18n="about.body" style="font-size:1.2rem; line-height:1.65; color:var(--muted)"></p>
-          <details class="story-expand">
-            <summary data-i18n="about.readmore">Read the full story →</summary>
-            <p data-i18n="about.body.full" style="color:var(--muted); line-height:1.65"></p>
-          </details>
-        </div>
-        <ul class="timeline reveal" style="border-left-color:var(--line)">
-          <li><b>1969</b><span data-i18n="about.tl1">A handful of SJSU graduate students begin a small Bible study.</span></li>
-          <li><b>1971</b><span data-i18n="about.tl2">The study becomes a church: Chinese Church In Christ.</span></li>
-          <li><b data-i18n="about.tlgrow.year">Decades of growth</b><span data-i18n="about.tl3">Mandarin, Cantonese, and English congregations — plus children's and youth ministries — take root.</span></li>
-          <li><b data-i18n="about.tlplant.year">Planting churches</b><span data-i18n="about.tl4">Sister CCICs are planted in Mountain View, South San Jose, Milpitas, Cupertino, and Central San Jose; Milpitas later plants Pleasanton.</span></li>
-          <li><b data-i18n="about.tltoday.year">Today</b><span data-i18n="about.tl5">Known as CCIC-SJ, still gathering every Sunday to worship in three languages.</span></li>
-        </ul>
-      </div>
-      <a class="story-card reveal" href="https://www.youtube.com/watch?v=fHp2EFHIB5s" target="_blank" rel="noopener">
-        <span class="story-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7-11-7Z" fill="currentColor"/></svg></span>
-        <span>
-          <b data-i18n="about.story.h">Watch Our Story</b>
-          <span data-i18n="about.story.p">A longer look back at CCIC's history, in the voices of the people who lived it — recorded for the church, in Mandarin.</span>
-        </span>
-      </a>
     </div>
   </section>
 
@@ -1146,6 +1147,40 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
     </div>
   </section>
 
+  <!-- ABOUT -->
+  <section class="band" id="about">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow" data-i18n="about.eyebrow">Our Story</p>
+        <h2 data-i18n="about.title">From a dorm Bible study to a family of churches</h2>
+        <p data-i18n="about.sub">A non-denominational church rooted in Scripture and nearly six decades of faithfulness in Silicon Valley.</p>
+      </div>
+      <div class="about-grid">
+        <div class="reveal">
+          <p data-i18n="about.body" style="font-size:1.2rem; line-height:1.65; color:var(--muted)"></p>
+          <details class="story-expand">
+            <summary data-i18n="about.readmore">Read the full story →</summary>
+            <p data-i18n="about.body.full" style="color:var(--muted); line-height:1.65"></p>
+          </details>
+        </div>
+        <ul class="timeline reveal" style="border-left-color:var(--line)">
+          <li><b>1969</b><span data-i18n="about.tl1">A handful of SJSU graduate students begin a small Bible study.</span></li>
+          <li><b>1971</b><span data-i18n="about.tl2">The study becomes a church: Chinese Church In Christ.</span></li>
+          <li><b data-i18n="about.tlgrow.year">Decades of growth</b><span data-i18n="about.tl3">Mandarin, Cantonese, and English congregations — plus children's and youth ministries — take root.</span></li>
+          <li><b data-i18n="about.tlplant.year">Planting churches</b><span data-i18n="about.tl4">Sister CCICs are planted in Mountain View, South San Jose, Milpitas, Cupertino, and Central San Jose; Milpitas later plants Pleasanton.</span></li>
+          <li><b data-i18n="about.tltoday.year">Today</b><span data-i18n="about.tl5">Known as CCIC-SJ, still gathering every Sunday to worship in three languages.</span></li>
+        </ul>
+      </div>
+      <a class="story-card reveal" href="https://www.youtube.com/watch?v=fHp2EFHIB5s" target="_blank" rel="noopener">
+        <span class="story-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7-11-7Z" fill="currentColor"/></svg></span>
+        <span>
+          <b data-i18n="about.story.h">Watch Our Story</b>
+          <span data-i18n="about.story.p">A longer look back at CCIC's history, in the voices of the people who lived it — recorded for the church, in Mandarin.</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
   <!-- VISIT -->
   <section class="band" id="visit">
     <div class="wrap">
@@ -1213,7 +1248,7 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
       <div>
         <h4 data-i18n="foot.explore">Explore</h4>
         <ul>
-          <li><a href="#about" data-i18n="nav.about">About</a></li>
+          <li><a href="#latest" data-i18n="nav.latest">Latest Message</a></li>
           <li><a href="#community" data-i18n="nav.community">Community</a></li>
           <li><a href="#nextgen" data-i18n="nav.nextgen">Next Gen</a></li>
           <li><a href="#beliefs" data-i18n="nav.beliefs">Beliefs</a></li>
@@ -1221,6 +1256,7 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
           <li><a href="#watch" data-i18n="nav.watch">Watch</a></li>
           <li><a href="#missions" data-i18n="nav.missions">Missions</a></li>
           <li><a href="#give" data-i18n="nav.give">Give</a></li>
+          <li><a href="#about" data-i18n="nav.about">About</a></li>
           <li><a href="https://scripturetolife.org" target="_blank" rel="noopener" data-i18n="foot.scripturetolife">Scripture to Life (daily devotional)</a></li>
         </ul>
       </div>
@@ -1325,6 +1361,7 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
   var CONTENT = {
     "brand.name": {en:"CCIC San Jose", "zh-hant":"聖荷西基督徒會堂", "zh-hans":"圣荷西基督徒会堂"},
     "brand.sub": {en:"Chinese Church In Christ", "zh-hant":"CCIC San Jose", "zh-hans":"CCIC San Jose"},
+    "nav.latest": {en:"Latest Message", "zh-hant":"本週信息", "zh-hans":"本周信息"},
     "nav.news": {en:"News", "zh-hant":"最新消息", "zh-hans":"最新消息"},
     "nav.about": {en:"About", "zh-hant":"關於我們", "zh-hans":"关于我们"},
     "nav.beliefs": {en:"Beliefs", "zh-hant":"信仰立場", "zh-hans":"信仰立场"},
@@ -1358,6 +1395,12 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
     "hero.card.sanctuaryA": {en:"Sanctuary A", "zh-hant":"A堂", "zh-hans":"A堂"},
     "hero.card.sanctuaryB": {en:"Sanctuary B", "zh-hant":"B堂", "zh-hans":"B堂"},
 
+    "latest.eyebrow": {en:"This Week's Message", "zh-hant":"本週信息", "zh-hans":"本周信息"},
+    "latest.title": {en:"Rivers of Living Water", "zh-hant":"活水的江河", "zh-hans":"活水的江河"},
+    "latest.scr": {en:"John 7:37–39", "zh-hant":"約翰福音7:37-39", "zh-hans":"约翰福音7:37-39"},
+    "latest.date": {en:"Sunday, September 6, 2026 · Mandarin Congregation", "zh-hant":"2026年9月6日主日 · 國語堂會", "zh-hans":"2026年9月6日主日 · 国语堂会"},
+    "latest.cta": {en:"▶ Watch Now", "zh-hant":"▶ 立即觀看", "zh-hans":"▶ 立即观看"},
+    "latest.browse": {en:"Browse All Messages →", "zh-hant":"瀏覽所有信息 →", "zh-hans":"浏览所有信息 →"},
     "news.eyebrow": {en:"Latest News", "zh-hant":"最新消息", "zh-hans":"最新消息"},
     "news.title": {en:"What's happening at CCIC right now", "zh-hant":"教會近期動態", "zh-hans":"教会近期动态"},
     "news.n1.t": {en:"Nov 27–29", "zh-hant":"11月27–29日", "zh-hans":"11月27–29日"},
@@ -2543,6 +2586,5 @@ footer{padding-block:48px; background:var(--band-bg); color:var(--muted-ink)}
   })();
 })();
 </script>
-
 </body>
 </html>
